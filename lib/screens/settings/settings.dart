@@ -44,7 +44,6 @@ class _SettingPageState extends State<SettingPage> {
       body: Center(
         child: Text('$_batteryState'),
       ),
-      bottomNavigationBar: BottomNavigationBarWidget(),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.battery_unknown),
         onPressed: () async {

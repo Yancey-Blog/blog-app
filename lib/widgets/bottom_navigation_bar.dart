@@ -11,11 +11,9 @@ class BottomNavigationBarWidget extends StatefulWidget {
 }
 
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
-  int _selectedIndex = 0;
+  var _selectedIndex = 0;
 
   void _onItemTapped(int index) {
-    print(index);
-
     setState(() {
       _selectedIndex = index;
     });

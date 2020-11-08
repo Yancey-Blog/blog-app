@@ -4,14 +4,7 @@ import 'package:blog_app/services/posts.dart';
 import '../../widgets/bottom_navigation_bar.dart';
 // import 'package:blog_app/models/posts.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Query(

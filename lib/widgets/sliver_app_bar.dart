@@ -24,11 +24,13 @@ class SliverAppBarSnap extends StatefulWidget {
 class _SliverAppBarSnapState extends State<SliverAppBarSnap> {
   final _controller = ScrollController();
 
-  double get maxHeight => 200 + MediaQuery.of(context).padding.top;
+  double get paddingTop => MediaQuery.of(context).padding.top;
 
-  double get minHeight => kToolbarHeight + MediaQuery.of(context).padding.top;
+  double get maxHeight => 200 + kToolbarHeight + paddingTop;
 
-  bool isEmpty = false;
+  double get minHeight => kToolbarHeight + paddingTop;
+
+  var isEmpty = false;
 
   @override
   Widget build(BuildContext context) {
@@ -53,13 +55,19 @@ class _SliverAppBarSnapState extends State<SliverAppBarSnap> {
           controller: _controller,
           slivers: [
             SliverAppBar(
+              leading: IconButton(
+                icon: Icon(Icons.arrow_back),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
               pinned: true,
               stretch: true,
               flexibleSpace: Header(
                 maxHeight: maxHeight,
                 minHeight: minHeight,
               ),
-              expandedHeight: maxHeight - MediaQuery.of(context).padding.top,
+              expandedHeight: maxHeight - paddingTop,
             ),
             if (!isEmpty)
               SliverList(
@@ -115,7 +123,8 @@ class Header extends StatelessWidget {
   final double maxHeight;
   final double minHeight;
 
-  const Header({Key key, this.maxHeight, this.minHeight}) : super(key: key);
+  const Header({Key key, @required this.maxHeight, @required this.minHeight})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +161,7 @@ class Header extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.only(bottom: 12, left: 12),
         child: Text(
-          'THE WEEKEND',
+          'Yancey Official',
           style: TextStyle(
             fontSize: Tween<double>(begin: 18, end: 36).evaluate(animation),
             color: Colors.white,

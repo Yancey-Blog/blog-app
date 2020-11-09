@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../screens/settings/settings.dart';
-import '../screens/info/info.dart';
+import '../screens/battery_info/battery_info.dart';
+import '../screens/device_info/device_info.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   BottomNavigationBarWidget({Key key}) : super(key: key);
@@ -19,29 +19,29 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     });
 
     if (index == 1) {
-      _pushToSettingPage();
+      _pushToBatteryPage();
     }
 
     if (index == 2) {
-      _pushToInfoPage();
+      _pushToDeviceInfoPage();
     }
   }
 
-  void _pushToSettingPage() {
+  void _pushToBatteryPage() {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
-          return SettingPage();
+          return BatteryPage();
         },
       ),
     );
   }
 
-  void _pushToInfoPage() {
+  void _pushToDeviceInfoPage() {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
-          return InfoPage();
+          return DeviceInfoPage();
         },
       ),
     );
@@ -62,9 +62,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           title: Text('Battery'),
         ),
         BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
+          icon: Icon(Icons.device_hub),
           // ignore: deprecated_member_use
-          title: Text('Settings'),
+          title: Text('Device'),
         ),
       ],
       currentIndex: _selectedIndex,

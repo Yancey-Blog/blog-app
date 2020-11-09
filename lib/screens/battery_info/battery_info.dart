@@ -2,14 +2,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:battery/battery.dart';
 
-class SettingPage extends StatefulWidget {
-  SettingPage({Key key}) : super(key: key);
+class BatteryPage extends StatefulWidget {
+  BatteryPage({Key key}) : super(key: key);
 
   @override
-  _SettingPageState createState() => _SettingPageState();
+  _BatteryPageState createState() => _BatteryPageState();
 }
 
-class _SettingPageState extends State<SettingPage> {
+class _BatteryPageState extends State<BatteryPage> {
   final _battery = Battery();
   StreamSubscription<BatteryState> _batteryStateSubscription;
 

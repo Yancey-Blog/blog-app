@@ -102,8 +102,8 @@ class _SliverAppBarSnapState extends State<SliverAppBarSnap> {
     final scrollDistance = maxHeight - minHeight;
 
     if (_controller.offset > 0 && _controller.offset < scrollDistance) {
-      double snapOffset =
-          _controller.offset / scrollDistance > 0.5 ? scrollDistance : 0;
+      final snapOffset =
+          _controller.offset / scrollDistance > 0.5 ? scrollDistance : 0.0;
 
       Future.microtask(() => _controller.animateTo(snapOffset,
           duration: Duration(milliseconds: 200), curve: Curves.easeIn));

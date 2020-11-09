@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/battery_info/battery_info.dart';
 import '../screens/device_info/device_info.dart';
+import './sliver_app_bar.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   BottomNavigationBarWidget({Key key}) : super(key: key);
@@ -18,12 +19,16 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       _selectedIndex = index;
     });
 
-    if (index == 1) {
+    if (index == 0) {
       _pushToBatteryPage();
     }
 
-    if (index == 2) {
+    if (index == 1) {
       _pushToDeviceInfoPage();
+    }
+
+    if (index == 2) {
+      _pushToSliverPage();
     }
   }
 
@@ -47,15 +52,25 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     );
   }
 
+  void _pushToSliverPage() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          return SliverPage();
+        },
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
       items: const <BottomNavigationBarItem>[
-        BottomNavigationBarItem(
-          icon: Icon(Icons.home),
-          // ignore: deprecated_member_use
-          title: Text('Home'),
-        ),
+        // BottomNavigationBarItem(
+        //   icon: Icon(Icons.home),
+        //   // ignore: deprecated_member_use
+        //   title: Text('Home'),
+        // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.battery_full),
           // ignore: deprecated_member_use
@@ -66,8 +81,13 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           // ignore: deprecated_member_use
           title: Text('Device'),
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.list),
+          // ignore: deprecated_member_use
+          title: Text('Sliver'),
+        ),
       ],
-      currentIndex: _selectedIndex,
+      currentIndex: 2,
       selectedItemColor: Colors.amber[800],
       onTap: _onItemTapped,
     );

@@ -63,7 +63,7 @@ class _SliverAppBarSnapState extends State<SliverAppBarSnap> {
               ),
               pinned: true,
               stretch: true,
-              flexibleSpace: Header(
+              flexibleSpace: SliverTopBar(
                 maxHeight: maxHeight,
                 minHeight: minHeight,
               ),
@@ -119,11 +119,12 @@ class _SliverAppBarSnapState extends State<SliverAppBarSnap> {
   }
 }
 
-class Header extends StatelessWidget {
+class SliverTopBar extends StatelessWidget {
   final double maxHeight;
   final double minHeight;
 
-  const Header({Key key, @required this.maxHeight, @required this.minHeight})
+  const SliverTopBar(
+      {Key key, @required this.maxHeight, @required this.minHeight})
       : super(key: key);
 
   @override

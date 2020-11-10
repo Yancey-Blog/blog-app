@@ -190,7 +190,7 @@ class Header extends StatelessWidget {
 
   Image _buildImage() {
     return Image.network(
-      'https://static.yancey.app/IMG_1867.JPG',
+      'https://static.yancey.app/mountain-top.jpg',
       fit: BoxFit.cover,
     );
   }

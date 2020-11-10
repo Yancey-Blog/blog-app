@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:blog_app/services/posts.dart';
 import '../../widgets/bottom_navigation_bar.dart';
+import '../../shared/utils.dart' show launchUrl;
 // import 'package:blog_app/models/posts.dart';
 
 class HomePage extends StatelessWidget {
@@ -26,6 +28,10 @@ class HomePage extends StatelessWidget {
               title: Text('Flutter 💋 GraphQL'),
             ),
             body: TaskList(posts, refetch),
+            floatingActionButton: FloatingActionButton(
+              child: const Icon(Icons.line_style),
+              onPressed: () => launchUrl('https://baidu.com'),
+            ),
             bottomNavigationBar: BottomNavigationBarWidget(),
           );
         });

@@ -68,23 +68,19 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       items: const <BottomNavigationBarItem>[
         // BottomNavigationBarItem(
         //   icon: Icon(Icons.home),
-        //   // ignore: deprecated_member_use
-        //   title: Text('Home'),
+        //   label: 'Home',
         // ),
         BottomNavigationBarItem(
           icon: Icon(Icons.battery_full),
-          // ignore: deprecated_member_use
-          title: Text('Battery'),
+          label: 'Battery',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.device_hub),
-          // ignore: deprecated_member_use
-          title: Text('Device'),
+          label: 'Device',
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.list),
-          // ignore: deprecated_member_use
-          title: Text('Sliver'),
+          label: 'Sliver',
         ),
       ],
       currentIndex: 2,

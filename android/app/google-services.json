@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1015042600548",
+    "firebase_url": "https://yancey-blog-app.firebaseio.com",
+    "project_id": "yancey-blog-app",
+    "storage_bucket": "yancey-blog-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1015042600548:android:d33fa7078116e719efb971",
+        "android_client_info": {
+          "package_name": "com.yanceyleo.blogApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1015042600548-duj7nlu2ekgrud6n789ope4o2qq1nd04.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyASVrsmXSum6ZUq23HZYU9CAhjwog0gB7E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1015042600548-duj7nlu2ekgrud6n789ope4o2qq1nd04.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1015042600548-aga04922p6tdd2r1g9i9fdo7ris6ka3s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yanceyleo.blogApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

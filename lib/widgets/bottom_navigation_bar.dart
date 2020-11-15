@@ -83,7 +83,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           label: 'Sliver',
         ),
       ],
-      currentIndex: 2,
+      currentIndex: _selectedIndex,
       selectedItemColor: Colors.amber[800],
       onTap: _onItemTapped,
     );

@@ -21,8 +21,10 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  animations: ^1.1.2
   auto_size_text: ^2.1.0
   battery: ^1.0.7
+  bloc: ^6.1.0
   cupertino_icons: ^1.0.0
   device_info: ^0.4.2+9
   firebase_analytics: ^6.1.0
@@ -33,17 +35,16 @@ dependencies:
   firebase_performance: ^0.4.2
   flutter:
     sdk: flutter
-  flutter_bloc: ^6.0.6
-  flutter_hooks: ^0.14.1
+  flutter_bloc: ^6.1.1
   flutter_launcher_icons: ^0.8.1
   flutter_localizations:
     sdk: flutter
+  flutter_local_notifications: ^3.0.1+4
   flutter_slidable: ^0.5.7
   get: ^3.15.0
   google_fonts: ^1.1.1
   graphql_flutter: ^3.1.0
   modal_bottom_sheet: ^0.2.2
-  provider: ^4.3.2+2
   url_launcher: ^5.7.8
   share: ^0.6.5+4
   shared_preferences: ^0.5.12+2

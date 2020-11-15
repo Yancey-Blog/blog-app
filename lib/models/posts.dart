@@ -1,36 +1,25 @@
-abstract class PostModel {
-  static int total;
-
-  static int page;
-
-  static int pageSize;
-
-  static List<PostItem> items;
+class PostModel {
+  int total;
+  int page;
+  int pageSize;
+  
+  List<PostItem> items;
 }
 
 class PostItem {
-  final String posterUrl;
+  String posterUrl;
+  String title;
+  String summary;
+  List<String> tags;
+  String lastModifiedDate;
+  int like;
+  int pv;
+  bool isPublic;
+  String createdAt;
+  String updatedAt;
 
-  final String title;
-
-  final String summary;
-
-  final List<String> tags;
-
-  final String lastModifiedDate;
-
-  final int like;
-
-  final int pv;
-
-  final bool isPublic;
-
-  final String createdAt;
-
-  final String updatedAt;
-
-  const PostItem(
-      this.posterUrl,
+  PostItem(
+      {this.posterUrl,
       this.title,
       this.summary,
       this.tags,
@@ -39,17 +28,17 @@ class PostItem {
       this.pv,
       this.isPublic,
       this.createdAt,
-      this.updatedAt);
+      this.updatedAt});
 }
 
 class PostsVariables {
-  final int page;
-  final int pageSize;
+  int page;
+  int pageSize;
 
-  const PostsVariables(this.page, this.pageSize);
+  PostsVariables(this.page, this.pageSize);
 }
 
 class Variables<T> {
-  final T input;
-  const Variables(this.input);
+  T input;
+  Variables(this.input);
 }

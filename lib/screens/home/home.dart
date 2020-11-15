@@ -3,7 +3,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:blog_app/services/posts.dart';
 import '../../widgets/bottom_navigation_bar.dart';
 import '../../shared/utils.dart' show launchUrl;
-// import 'package:blog_app/models/posts.dart';
+import 'package:blog_app/models/posts.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -17,8 +17,13 @@ class HomePage extends StatelessWidget {
         }),
         builder: (QueryResult result,
             {VoidCallback refetch, FetchMore fetchMore}) {
-          if (result.hasException) Text(result.exception.toString());
-          if (result.loading) CircularProgressIndicator();
+          if (result.hasException) {
+            return Text(result.exception.toString());
+          }
+
+          if (result.loading) {
+            return Scaffold(body: Center(child: Text('加载中...')));
+          }
 
           final posts = result.data['posts']['items'];
 

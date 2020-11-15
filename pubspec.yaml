@@ -24,7 +24,6 @@ dependencies:
   animations: ^1.1.2
   auto_size_text: ^2.1.0
   battery: ^1.0.7
-  bloc: ^6.1.0
   cupertino_icons: ^1.0.0
   device_info: ^0.4.2+9
   firebase_analytics: ^6.1.0
@@ -35,7 +34,6 @@ dependencies:
   firebase_performance: ^0.4.2
   flutter:
     sdk: flutter
-  flutter_bloc: ^6.1.1
   flutter_launcher_icons: ^0.8.1
   flutter_localizations:
     sdk: flutter

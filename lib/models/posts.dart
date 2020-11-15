@@ -2,7 +2,7 @@ class PostModel {
   int total;
   int page;
   int pageSize;
-  
+
   List<PostItem> items;
 }
 

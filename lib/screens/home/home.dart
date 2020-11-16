@@ -22,16 +22,16 @@ class HomePage extends StatelessWidget {
           }
 
           if (result.loading) {
-            return Scaffold(body: Center(child: Text('加载中...')));
+            return Scaffold(body: Center(child: CircularProgressIndicator()));
           }
 
-          final posts = result.data['posts']['items'];
+          final _posts = result.data['posts']['items'] as List;
 
           return Scaffold(
             appBar: AppBar(
               title: Text('Flutter 💋 GraphQL'),
             ),
-            body: TaskList(posts, refetch),
+            body: TaskList(_posts, refetch),
             floatingActionButton: FloatingActionButton(
               child: const Icon(Icons.line_style),
               onPressed: () => launchUrl('https://baidu.com'),
@@ -43,7 +43,7 @@ class HomePage extends StatelessWidget {
 }
 
 class TaskList extends StatelessWidget {
-  final posts;
+  final List posts;
   final refetch;
 
   TaskList(this.posts, this.refetch);
@@ -51,7 +51,7 @@ class TaskList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: posts.length as int,
+      itemCount: posts.length,
       padding: const EdgeInsets.all(8),
       itemBuilder: (context, index) {
         final post = posts[index];

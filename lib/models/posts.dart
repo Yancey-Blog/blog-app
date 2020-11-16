@@ -1,25 +1,26 @@
 class PostModel {
-  int total;
-  int page;
-  int pageSize;
+  final int total;
+  final int page;
+  final int pageSize;
+  final List<PostItem> items;
 
-  List<PostItem> items;
+  PostModel(this.total, this.page, this.pageSize, this.items);
 }
 
 class PostItem {
-  String posterUrl;
-  String title;
-  String summary;
-  List<String> tags;
-  String lastModifiedDate;
-  int like;
-  int pv;
-  bool isPublic;
-  String createdAt;
-  String updatedAt;
+  final String posterUrl;
+  final String title;
+  final String summary;
+  final List<String> tags;
+  final String lastModifiedDate;
+  final int like;
+  final int pv;
+  final bool isPublic;
+  final String createdAt;
+  final String updatedAt;
 
   PostItem(
-      {this.posterUrl,
+      this.posterUrl,
       this.title,
       this.summary,
       this.tags,
@@ -28,7 +29,7 @@ class PostItem {
       this.pv,
       this.isPublic,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt);
 }
 
 class PostsVariables {

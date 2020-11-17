@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:blog_app/services/posts.dart';
-import '../../widgets/bottom_navigation_bar.dart';
-import '../../shared/utils.dart' show launchUrl;
-import 'package:blog_app/models/posts.dart';
+import 'package:blog_app/widgets/bottom_navigation_bar.dart';
+import 'package:blog_app/shared/utils.dart' show launchUrl;
 
 class HomePage extends StatelessWidget {
   @override

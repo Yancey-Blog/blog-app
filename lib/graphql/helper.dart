@@ -9,7 +9,7 @@ QueryBuilder withGenericHandling(QueryBuilder builder) {
 
     if (result.loading) {
       return const Center(
-        child: CircularProgressIndicator(),
+        child: Scaffold(body: Center(child: CircularProgressIndicator())),
       );
     }
 

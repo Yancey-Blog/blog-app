@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import '../screens/battery_info/battery_info.dart';
-import '../screens/device_info/device_info.dart';
+import 'package:blog_app/screens/screens.dart';
 import './sliver_app_bar.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {

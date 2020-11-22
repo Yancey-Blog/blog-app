@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:blog_app/services/posts.dart';
+import 'components/custom_markdown_component/view.dart';
 
 class PostDetailPage extends StatelessWidget {
   @override
@@ -29,12 +29,7 @@ class PostDetailPage extends StatelessWidget {
               title: Text(_post['title'] as String),
             ),
             body: SafeArea(
-              child: Markdown(
-                data: _post['content'] as String,
-                styleSheet: MarkdownStyleSheet(
-                  h1: TextStyle(color: Colors.blue, fontSize: 40),
-                ),
-              ),
+              child: CustomMarkdown(_post['content'] as String),
             ),
           );
         });

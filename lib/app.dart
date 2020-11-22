@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'graphql/apollo_client.dart';
-import 'screens/screens.dart';
+import 'routes/routes.dart';
 
 class App extends StatefulWidget {
   @override
@@ -23,19 +23,8 @@ class _AppState extends State<StatefulWidget> {
           theme: ThemeData(
             primarySwatch: Colors.pink,
           ),
-          home: Navigator(
-            pages: [
-              MaterialPage(
-                key: ValueKey('HomePage'),
-                child: HomePage(),
-              ),
-              MaterialPage(
-                key: ValueKey('PostDetailPage'),
-                child: PostDetailPage(),
-              )
-            ],
-            onPopPage: (route, result) => route.didPop(result),
-          ),
+          initialRoute: '/',
+          routes: Routes.routes,
         ),
       ),
     );

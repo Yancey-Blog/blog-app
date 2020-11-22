@@ -38,6 +38,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_local_notifications: ^3.0.1+4
+  flutter_markdown: ^0.5.1
   flutter_slidable: ^0.5.7
   get: ^3.15.0
   google_fonts: ^1.1.1

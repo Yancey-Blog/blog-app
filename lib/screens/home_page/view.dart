@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:blog_app/services/posts.dart';
-import 'package:blog_app/widgets/bottom_navigation_bar.dart';
 import './components/task_list.dart';
 
 class HomePage extends StatelessWidget {
@@ -31,11 +30,6 @@ class HomePage extends StatelessWidget {
               title: Text('Flutter 💋 GraphQL'),
             ),
             body: TaskList(_posts, refetch),
-            floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.line_style),
-              onPressed: () => refetch(),
-            ),
-            bottomNavigationBar: BottomNavigationBarWidget(),
           );
         });
   }

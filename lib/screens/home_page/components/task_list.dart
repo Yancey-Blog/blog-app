@@ -1,32 +1,20 @@
 import 'package:flutter/material.dart';
 
-class TaskList extends StatefulWidget {
+class ScreenArguments {
+  final String id;
+
+  ScreenArguments(this.id);
+}
+
+class TaskList extends StatelessWidget {
   final List posts;
   final refetch;
 
   TaskList(this.posts, this.refetch);
 
-  @override
-  _TaskListState createState() => _TaskListState(posts, refetch);
-}
-
-class _TaskListState extends State<TaskList> with ChangeNotifier {
-  final List posts;
-  final refetch;
-  String _id;
-
-  _TaskListState(this.posts, this.refetch);
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  void onTapped(String id) {
-    setState(() {
-      _id = id;
-    });
-    notifyListeners();
+  void onTapped(BuildContext context, String id) {
+    Navigator.pushNamed(context, 'post_detail_page',
+        arguments: id);
   }
 
   @override
@@ -40,7 +28,7 @@ class _TaskListState extends State<TaskList> with ChangeNotifier {
         return ListTile(
           title: Text(post['title'] as String),
           subtitle: Text((post['tags'] as List).join(', ')),
-          onTap: () => onTapped(post['_id'] as String),
+          onTap: () => onTapped(context, post['_id'] as String),
         );
       },
     );

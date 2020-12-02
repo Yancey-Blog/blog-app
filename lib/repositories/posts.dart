@@ -2,8 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 
 import 'package:blog_app/services/posts.dart';
-import 'package:blog_app/models/posts.dart';
-
+import 'package:blog_app/models/post_models/post_model.dart';
 
 class PostRepository {
   final GraphQLClient client;

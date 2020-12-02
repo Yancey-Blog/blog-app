@@ -1,4 +1,4 @@
-import '../basic_model.dart';
+import 'package:blog_app/models/basic_model.dart';
 
 class YanceyMusicModel extends BasicModel {
   final String title;

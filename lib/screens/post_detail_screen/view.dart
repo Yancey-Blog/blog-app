@@ -3,7 +3,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:blog_app/services/posts.dart';
 import 'components/custom_markdown_component/view.dart';
 
-class PostDetailPage extends StatelessWidget {
+class PostDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final id = ModalRoute.of(context).settings.arguments;

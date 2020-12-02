@@ -35,7 +35,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
-          return BatteryPage();
+          return BatteryScreen();
         },
       ),
     );
@@ -45,7 +45,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
     Navigator.of(context).push(
       MaterialPageRoute<void>(
         builder: (BuildContext context) {
-          return DeviceInfoPage();
+          return DeviceInfoScreen();
         },
       ),
     );

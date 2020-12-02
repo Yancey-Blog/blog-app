@@ -1,4 +1,4 @@
-export 'home_page/view.dart';
-export 'battery_info_page/view.dart';
-export 'device_info_page/view.dart';
-export 'post_detail_page/view.dart';
+export 'home_screen/view.dart';
+export 'battery_info_screen/view.dart';
+export 'device_info_screen/view.dart';
+export 'post_detail_screen/view.dart';

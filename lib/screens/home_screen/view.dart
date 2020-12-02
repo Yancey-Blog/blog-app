@@ -3,7 +3,7 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:blog_app/services/posts.dart';
 import './components/task_list.dart';
 
-class HomePage extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Query(

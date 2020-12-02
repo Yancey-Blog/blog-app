@@ -13,8 +13,7 @@ class TaskList extends StatelessWidget {
   TaskList(this.posts, this.refetch);
 
   void onTapped(BuildContext context, String id) {
-    Navigator.pushNamed(context, 'post_detail_page',
-        arguments: id);
+    Navigator.pushNamed(context, 'post_detail_screen', arguments: id);
   }
 
   @override

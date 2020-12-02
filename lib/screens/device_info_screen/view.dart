@@ -13,12 +13,12 @@ import 'package:device_info/device_info.dart';
 //   });
 // }
 
-class DeviceInfoPage extends StatefulWidget {
+class DeviceInfoScreen extends StatefulWidget {
   @override
-  _DeviceInfoPageState createState() => _DeviceInfoPageState();
+  _DeviceInfoScreenState createState() => _DeviceInfoScreenState();
 }
 
-class _DeviceInfoPageState extends State<DeviceInfoPage> {
+class _DeviceInfoScreenState extends State<DeviceInfoScreen> {
   static final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
   Map<String, dynamic> _deviceData = <String, dynamic>{};
 

@@ -1,10 +1,32 @@
+import 'package:meta/meta.dart';
+
 class PostModel {
   final int total;
   final int page;
   final int pageSize;
   final List<PostItem> items;
 
-  PostModel(this.total, this.page, this.pageSize, this.items);
+  PostModel(
+      {@required this.total,
+      @required this.page,
+      @required this.pageSize,
+      @required this.items});
+
+  Map<String, dynamic> toJson() {
+    return <String, dynamic>{
+      'total': total,
+      'page': page,
+      'pageSize': pageSize,
+      'items': items,
+    };
+  }
+
+  static PostModel fromJson(Map<String, dynamic> map) => PostModel(
+        total: map['total'] as int,
+        page: map['page'] as int,
+        pageSize: map['pageSize'] as int,
+        items: map['items'] as List<PostItem>,
+      );
 }
 
 class PostItem {

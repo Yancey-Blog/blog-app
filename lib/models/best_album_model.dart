@@ -1,4 +1,4 @@
-import 'package:blog_app/models/basic_model.dart';
+import 'basic_model.dart';
 
 class BestAlbumModel extends BasicModel {
   final String title;

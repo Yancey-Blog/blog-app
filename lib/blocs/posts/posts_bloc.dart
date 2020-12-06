@@ -1,7 +1,10 @@
 import 'dart:async';
-
-import 'package:bloc/bloc.dart';
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
+import 'package:bloc/bloc.dart';
+
+import 'package:blog_app/models/post_model.dart';
+import 'repository.dart';
 
 part 'posts_event.dart';
 part 'posts_state.dart';
@@ -13,6 +16,6 @@ class PostsBloc extends Bloc<PostsEvent, PostsState> {
   Stream<PostsState> mapEventToState(
     PostsEvent event,
   ) async* {
-    // TODO: implement mapEventToState
+    final posts = await PostRepository().fetchPostsByPageAndPageSize();
   }
 }

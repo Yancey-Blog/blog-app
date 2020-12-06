@@ -2,13 +2,20 @@ import 'package:flutter/foundation.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:blog_app/shared/constants.dart';
 
-final client = ValueNotifier<GraphQLClient>(
+final apolloClient = ValueNotifier<GraphQLClient>(
   GraphQLClient(
     cache: OptimisticCache(
       dataIdFromObject: typenameDataIdFromObject,
     ),
     link: HttpLink(uri: apiUrl),
   ),
+);
+
+final client = GraphQLClient(
+  cache: OptimisticCache(
+    dataIdFromObject: typenameDataIdFromObject,
+  ),
+  link: HttpLink(uri: apiUrl),
 );
 
 // @override

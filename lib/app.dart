@@ -3,21 +3,11 @@ import 'package:graphql_flutter/graphql_flutter.dart';
 import 'graphql/apollo_client.dart';
 import 'routes/routes.dart';
 
-class App extends StatefulWidget {
-  @override
-  State<StatefulWidget> createState() => _AppState();
-}
-
-class _AppState extends State<StatefulWidget> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GraphQLProvider(
-      client: client,
+      client: apolloClient,
       child: CacheProvider(
         child: MaterialApp(
           theme: ThemeData(

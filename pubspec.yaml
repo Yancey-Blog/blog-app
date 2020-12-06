@@ -26,6 +26,7 @@ dependencies:
   battery: ^1.0.7
   cupertino_icons: ^1.0.0
   device_info: ^0.4.2+9
+  equatable: ^1.2.5
   firebase_analytics: ^6.1.0
   firebase_auth: ^0.18.3
   firebase_core: ^0.5.2

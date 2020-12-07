@@ -12,7 +12,9 @@ final apolloClient = ValueNotifier<GraphQLClient>(
 );
 
 final client = GraphQLClient(
-  cache: InMemoryCache(),
+  cache: OptimisticCache(
+    dataIdFromObject: typenameDataIdFromObject,
+  ),
   link: HttpLink(uri: apiUrl),
 );
 

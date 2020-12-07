@@ -26,8 +26,8 @@ class PostBloc extends Bloc<PostEvent, PostState> {
         final posts =
             await postRepository.fetchPostsByPageAndPageSize(event.page);
         yield PostLoadSuccess(posts: posts);
-      } catch (_) {
-        yield PostLoadFailure('我错了');
+      } catch (_, stackTrace) {
+        yield PostLoadFailure('$_ $stackTrace');
       }
     }
   }

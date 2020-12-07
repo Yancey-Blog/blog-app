@@ -21,8 +21,27 @@ class PostRepository {
       throw result.exception;
     }
 
-    final _data = PostModel.fromJson(result.data['posts']);
+    final items = result.data['posts']['items'] as List<dynamic>;
+    final _items = items
+        .map(
+          (dynamic e) => PostItem(
+            id: e['_id'] as String,
+            posterUrl: e['posterUrl'] as String,
+            title: e['title'] as String,
+            summary: e['summary'] as String,
+            // tags: e['tags'] as List<String>,
+            lastModifiedDate: e['lastModifiedDate'] as String,
+            like: e['like'] as int,
+            pv: e['pv'] as int,
+            isPublic: e['isPublic'] as bool,
+            createdAt: e['createdAt'] as String,
+            updatedAt: e['updatedAt'] as String,
+          ),
+        )
+        .toList();
 
-    return _data.items;
+    // final _data = PostModel.fromJson(result.data['posts']);
+
+    return _items;
   }
 }

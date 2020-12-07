@@ -48,7 +48,7 @@ class _PostListState extends State<PostList> {
 
               return ListTile(
                 title: Text(post.title),
-                subtitle: Text((post.tags).join(', ')),
+                // subtitle: Text((post.tags).join(', ')),
                 onTap: () => onTapped(context, post.id),
               );
             },
@@ -58,7 +58,7 @@ class _PostListState extends State<PostList> {
         if (state is PostLoadFailure) {
           return Center(
             child: Text(
-              'Something went wrong!',
+              state.errorMessage,
               style: TextStyle(color: Colors.red),
             ),
           );

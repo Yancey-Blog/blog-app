@@ -6,39 +6,24 @@ import 'package:blog_app/models/post_model/post_model.dart';
 class PostRepository {
   Future<List<PostItem>> fetchPostsByPageAndPageSize(int page) async {
     final result = await client.query(
-      QueryOptions(
+      WatchQueryOptions(
         documentNode: gql(posts),
         variables: {
-          'input': {'page': page, 'pageSize': 10},
+          'input': {
+            'page': 1,
+            'pageSize': 10,
+          },
         },
+        fetchResults: true,
       ),
     );
+
     if (result.hasException) {
       throw result.exception;
     }
 
-    final data = result.data['posts']['items'] as List<PostItem>;
-    return data;
+    final _data = PostModel.fromJson(result.data['posts']);
 
-    // const res = <PostItem>[];
-    // data.forEach(
-    //   (el) {
-    //     res.add(
-    //       PostItem(
-    //         posterUrl: el.posterUrl,
-    //         title: el.title,
-    //         summary: el.title,
-    //         tags: el.tags,
-    //         lastModifiedDate: el.lastModifiedDate,
-    //         like: el.like,
-    //         pv: el.pv,
-    //         isPublic: el.isPublic,
-    //         createdAt: el.createdAt,
-    //         updatedAt: el.updatedAt,
-    //       ),
-    //     );
-    //   },
-    // );
-    // return res;
+    return _data.items;
   }
 }

@@ -13,7 +13,8 @@ class App extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.pink,
           ),
-          initialRoute: '/',
+          // initialRoute: '/',
+          initialRoute: 'post_list_screen',
           routes: Routes.routes,
         ),
       ),

@@ -4,12 +4,12 @@ import 'package:blog_app/services/post_service/post_service.dart';
 import 'package:blog_app/models/post_model/post_model.dart';
 
 class PostRepository {
-  Future<List<PostItem>> fetchPostsByPageAndPageSize() async {
+  Future<List<PostItem>> fetchPostsByPageAndPageSize(int page) async {
     final result = await client.query(
       QueryOptions(
         documentNode: gql(posts),
         variables: {
-          'input': {'page': 1, 'pageSize': 10},
+          'input': {'page': page, 'pageSize': 10},
         },
       ),
     );

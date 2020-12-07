@@ -6,7 +6,7 @@ import 'package:blog_app/models/post_model/post_model.dart';
 class PostRepository {
   Future<List<PostItem>> fetchPostsByPageAndPageSize(int page) async {
     final result = await client.query(
-      WatchQueryOptions(
+      QueryOptions(
         documentNode: gql(posts),
         variables: {
           'input': {
@@ -14,7 +14,6 @@ class PostRepository {
             'pageSize': 10,
           },
         },
-        fetchResults: true,
       ),
     );
 

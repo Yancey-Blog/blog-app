@@ -1,2 +1,1 @@
-export 'posts/posts_bloc.dart';
-export 'music/music_bloc.dart';
+export 'post_bloc/post_bloc.dart';

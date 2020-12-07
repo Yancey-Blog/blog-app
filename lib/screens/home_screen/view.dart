@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:blog_app/services/posts.dart';
+import 'package:blog_app/services/post_service/post_service.dart';
 import './components/task_list.dart';
 
 class HomeScreen extends StatelessWidget {

@@ -7,14 +7,14 @@ class ScreenArguments {
   ScreenArguments(this.id);
 }
 
-class PostList extends StatefulWidget {
-  PostList({Key key}) : super(key: key);
+class PostListView extends StatefulWidget {
+  PostListView({Key key}) : super(key: key);
 
   @override
-  _PostListState createState() => _PostListState();
+  _PostListViewState createState() => _PostListViewState();
 }
 
-class _PostListState extends State<PostList> {
+class _PostListViewState extends State<PostListView> {
   void onTapped(BuildContext context, String id) {
     Navigator.pushNamed(context, 'post_detail_screen', arguments: id);
   }
@@ -40,18 +40,23 @@ class _PostListState extends State<PostList> {
         if (state is PostListLoadSuccess) {
           final posts = state.posts;
 
-          return ListView.builder(
-            itemCount: posts.length,
-            padding: const EdgeInsets.all(8),
-            itemBuilder: (context, index) {
-              final post = posts[index];
+          return Scaffold(
+            appBar: AppBar(
+              title: Text('Flutter fuck GraphQL'),
+            ),
+            body: ListView.builder(
+              itemCount: posts.length,
+              padding: const EdgeInsets.all(8),
+              itemBuilder: (context, index) {
+                final post = posts[index];
 
-              return ListTile(
-                title: Text(post.title),
-                subtitle: Text((post.tags).join(', ')),
-                onTap: () => onTapped(context, post.id),
-              );
-            },
+                return ListTile(
+                  title: Text(post.title),
+                  subtitle: Text((post.tags).join(', ')),
+                  onTap: () => onTapped(context, post.id),
+                );
+              },
+            ),
           );
         }
 

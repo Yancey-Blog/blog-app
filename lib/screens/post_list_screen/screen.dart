@@ -15,11 +15,7 @@ class PostListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => PostListBloc(postListRepository: postListRepository),
-      child: Scaffold(
-          appBar: AppBar(
-            title: Text('Flutter fuck GraphQL'),
-          ),
-          body: PostList()),
+      child: PostListView(),
     );
   }
 }

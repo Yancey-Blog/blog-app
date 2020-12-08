@@ -1,37 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
-import 'package:blog_app/services/post_service/post_service.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blog_app/blocs/blocs.dart';
 import 'components/custom_markdown_component/view.dart';
 
-class PostDetailScreen extends StatelessWidget {
+class ScreenArguments {
+  final String id;
+  ScreenArguments(this.id);
+}
+
+class PostDetailView extends StatefulWidget {
+  PostDetailView({Key key}) : super(key: key);
+
   @override
-  Widget build(BuildContext context) {
+  _PostDetailState createState() => _PostDetailState();
+}
+
+class _PostDetailState extends State<PostDetailView> {
+  @override
+  void initState() {
+    super.initState();
     final id = ModalRoute.of(context).settings.arguments;
 
-    return Query(
-        options: QueryOptions(documentNode: gql(getPostById), variables: {
-          'id': id,
-        }),
-        builder: (QueryResult result,
-            {VoidCallback refetch, FetchMore fetchMore}) {
-          if (result.hasException) {
-            return Text(result.exception.toString());
-          }
+    BlocProvider.of<PostDetailBloc>(context)
+        .add(PostDetailRequested(id: id as String));
+  }
 
-          if (result.loading) {
-            return Scaffold(body: Center(child: CircularProgressIndicator()));
-          }
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<PostDetailBloc, PostDetailState>(
+      builder: (context, state) {
+        if (state is PostDetailInitial) {
+          return Center(child: Text('Please Select a Location'));
+        }
+        if (state is PostDetailLoadInProgress) {
+          return Center(child: CircularProgressIndicator());
+        }
 
-          final _post = result.data['getPostById'];
+        if (state is PostDetailLoadSuccess) {
+          final post = state.post;
 
           return Scaffold(
             appBar: AppBar(
-              title: Text(_post['title'] as String),
+              title: Text(post.title),
             ),
             body: SafeArea(
-              child: CustomMarkdown(_post['content'] as String),
+              child: CustomMarkdown(post.content),
             ),
           );
-        });
+        }
+
+        if (state is PostDetailLoadFailure) {
+          return Center(
+            child: Text(
+              state.errorMessage,
+              style: TextStyle(color: Colors.red),
+            ),
+          );
+        }
+      },
+    );
   }
 }

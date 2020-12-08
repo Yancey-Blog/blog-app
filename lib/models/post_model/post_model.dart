@@ -41,6 +41,7 @@ class PostItem {
   final String posterUrl;
   final String title;
   final String summary;
+  final String content;
   final List<String> tags;
   final String lastModifiedDate;
   final int like;
@@ -54,6 +55,7 @@ class PostItem {
     @required this.posterUrl,
     @required this.title,
     @required this.summary,
+    @required this.content,
     @required this.tags,
     @required this.lastModifiedDate,
     @required this.like,
@@ -69,6 +71,7 @@ class PostItem {
       posterUrl: json['posterUrl'] as String,
       title: json['title'] as String,
       summary: json['summary'] as String,
+      content: json['content'] as String,
       tags: List<String>.from(json['tags'] as Iterable<dynamic>),
       lastModifiedDate: json['lastModifiedDate'] as String,
       like: json['like'] as int,

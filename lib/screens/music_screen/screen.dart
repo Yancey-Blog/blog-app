@@ -5,11 +5,9 @@ import 'package:blog_app/blocs/blocs.dart';
 import 'view.dart';
 
 class MusicScreen extends StatelessWidget {
-  final MusicRepository musicRepository;
+  final musicRepository = MusicRepository();
 
-  MusicScreen({Key key, @required this.musicRepository})
-      : assert(musicRepository != null),
-        super(key: key);
+  MusicScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

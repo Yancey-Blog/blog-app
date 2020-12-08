@@ -5,11 +5,9 @@ import 'package:blog_app/blocs/blocs.dart';
 import 'view.dart';
 
 class PostDetailScreen extends StatelessWidget {
-  final PostDetailRepository postDetailRepository;
+  final postDetailRepository = PostDetailRepository();
 
-  PostDetailScreen({Key key, @required this.postDetailRepository})
-      : assert(postDetailRepository != null),
-        super(key: key);
+  PostDetailScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

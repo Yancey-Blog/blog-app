@@ -28,10 +28,12 @@ class PostModel extends Equatable {
       page: json['page'] as int,
       pageSize: json['pageSize'] as int,
       items: List<PostItem>.from(
-        (json['items'] as List<PostItem>).map(
-          (x) => PostItem.fromJson(x),
-        ),
-      ).toList(),
+        (json['items'] as Iterable<Object>)
+            .map(
+              (x) => PostItem.fromJson(x),
+            )
+            .toList(),
+      ),
     );
   }
 }
@@ -41,7 +43,7 @@ class PostItem {
   final String posterUrl;
   final String title;
   final String summary;
-  // final List<String> tags;
+  final List<String> tags;
   final String lastModifiedDate;
   final int like;
   final int pv;
@@ -54,7 +56,7 @@ class PostItem {
     @required this.posterUrl,
     @required this.title,
     @required this.summary,
-    // @required this.tags,
+    @required this.tags,
     @required this.lastModifiedDate,
     @required this.like,
     @required this.pv,
@@ -69,7 +71,7 @@ class PostItem {
       posterUrl: json['posterUrl'] as String,
       title: json['title'] as String,
       summary: json['summary'] as String,
-      // tags: json['tags'] as List<String>,
+      tags: List<String>.from(json['tags'] as Iterable<Object>),
       lastModifiedDate: json['lastModifiedDate'] as String,
       like: json['like'] as int,
       pv: json['pv'] as int,

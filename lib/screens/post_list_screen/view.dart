@@ -23,21 +23,21 @@ class _PostListState extends State<PostList> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<PostBloc>(context).add(PostRequested(page: 1));
+    BlocProvider.of<PostListBloc>(context).add(PostListRequested(page: 1));
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PostBloc, PostState>(
+    return BlocBuilder<PostListBloc, PostListState>(
       builder: (context, state) {
-        if (state is PostInitial) {
+        if (state is PostListInitial) {
           return Center(child: Text('Please Select a Location'));
         }
-        if (state is PostLoadInProgress) {
+        if (state is PostListLoadInProgress) {
           return Center(child: CircularProgressIndicator());
         }
 
-        if (state is PostLoadSuccess) {
+        if (state is PostListLoadSuccess) {
           final posts = state.posts;
 
           return ListView.builder(
@@ -55,7 +55,7 @@ class _PostListState extends State<PostList> {
           );
         }
 
-        if (state is PostLoadFailure) {
+        if (state is PostListLoadFailure) {
           return Center(
             child: Text(
               state.errorMessage,

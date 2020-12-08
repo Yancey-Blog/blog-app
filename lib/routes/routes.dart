@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:blog_app/blocs/post_list_bloc/post_list_repository.dart';
-import 'package:blog_app/blocs/post_detail_bloc/post_detail_repository.dart';
+import 'package:blog_app/repositories/repositories.dart';
 import 'package:blog_app/screens/screens.dart';
 
 class Routes {

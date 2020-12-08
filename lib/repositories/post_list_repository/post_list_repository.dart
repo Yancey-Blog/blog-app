@@ -10,8 +10,8 @@ class PostListRepository {
         documentNode: gql(posts),
         variables: {
           'input': {
-            'page': 1,
-            'pageSize': 40,
+            'page': page,
+            'pageSize': 10,
           },
         },
       ),

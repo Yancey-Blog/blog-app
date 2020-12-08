@@ -3,8 +3,8 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 
-import 'package:blog_app/models/post_model/post_model.dart';
-import 'post_detail_repository.dart';
+import 'package:blog_app/models/models.dart';
+import 'package:blog_app/repositories/repositories.dart';
 
 part 'post_detail_event.dart';
 part 'post_detail_state.dart';

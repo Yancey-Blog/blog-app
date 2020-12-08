@@ -13,14 +13,13 @@ class PostDetailView extends StatefulWidget {
 }
 
 class _PostDetailViewState extends State<PostDetailView> {
-  // _PostDetailViewState({String id}) : super(id: '');
-
   @override
   void initState() {
     super.initState();
 
-    BlocProvider.of<PostDetailBloc>(context)
-        .add(PostDetailRequested(id: '7e95f2ef-adb3-4d1c-a0dc-1b910682dd65'));
+    BlocProvider.of<PostDetailBloc>(context).add(
+      PostDetailRequested(id: widget.id),
+    );
   }
 
   @override

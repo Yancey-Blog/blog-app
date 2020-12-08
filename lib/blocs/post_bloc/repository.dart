@@ -11,7 +11,7 @@ class PostRepository {
         variables: {
           'input': {
             'page': 1,
-            'pageSize': 10,
+            'pageSize': 40,
           },
         },
       ),
@@ -21,7 +21,8 @@ class PostRepository {
       throw result.exception;
     }
 
-    final list = PostModel.fromJson(result.data['posts']);
+    final list =
+        PostModel.fromJson(result.data['posts'] as Map<String, dynamic>);
 
     return list.items;
   }

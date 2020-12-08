@@ -22,18 +22,16 @@ class PostModel extends Equatable {
         items,
       ];
 
-  factory PostModel.fromJson(dynamic json) {
+  factory PostModel.fromJson(Map<String, dynamic> json) {
     return PostModel(
       total: json['total'] as int,
       page: json['page'] as int,
       pageSize: json['pageSize'] as int,
-      items: List<PostItem>.from(
-        (json['items'] as Iterable<Object>)
-            .map(
-              (x) => PostItem.fromJson(x),
-            )
-            .toList(),
-      ),
+      items: (json['items'] as List<dynamic>)
+          .map(
+            (i) => PostItem.fromJson(i as Map<String, dynamic>),
+          )
+          .toList(),
     );
   }
 }
@@ -65,13 +63,13 @@ class PostItem {
     @required this.updatedAt,
   });
 
-  factory PostItem.fromJson(dynamic json) {
+  factory PostItem.fromJson(Map<String, dynamic> json) {
     return PostItem(
       id: json['_id'] as String,
       posterUrl: json['posterUrl'] as String,
       title: json['title'] as String,
       summary: json['summary'] as String,
-      tags: List<String>.from(json['tags'] as Iterable<Object>),
+      tags: List<String>.from(json['tags'] as Iterable<dynamic>),
       lastModifiedDate: json['lastModifiedDate'] as String,
       like: json['like'] as int,
       pv: json['pv'] as int,

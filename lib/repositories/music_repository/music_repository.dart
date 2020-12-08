@@ -4,14 +4,11 @@ import 'package:blog_app/graphql/apollo_client.dart';
 import 'package:blog_app/services/services.dart';
 import 'package:blog_app/models/models.dart';
 
-class PostDetailRepository {
-  Future<PostItem> fetchPostById(String id) async {
+class MusicRepository {
+  Future<List<BestAlbum>> fetchBestAlbums() async {
     final result = await client.query(
       QueryOptions(
-        documentNode: gql(getPostById),
-        variables: {
-          'id': id,
-        },
+        documentNode: gql(getBestAlbums),
       ),
     );
 
@@ -19,9 +16,9 @@ class PostDetailRepository {
       throw result.exception;
     }
 
-    final post =
-        PostItem.fromJson(result.data['getPostById'] as Map<String, dynamic>);
+    final bestAlbums = BestAlbumList.fromJson(
+        result.data['getBestAlbums'] as List<dynamic>).bestAlbums;
 
-    return post;
+    return bestAlbums;
   }
 }

@@ -9,7 +9,7 @@ class App extends StatelessWidget {
         primarySwatch: Colors.pink,
       ),
       // initialRoute: '/',
-      initialRoute: 'post_list_screen',
+      initialRoute: 'music_screen',
       routes: Routes.routes,
     );
   }

@@ -13,5 +13,8 @@ class Routes {
     'post_list_screen': (context) => PostListScreen(
           postListRepository: PostListRepository(),
         ),
+    'music_screen': (context) => MusicScreen(
+          musicRepository: MusicRepository(),
+        ),
   };
 }

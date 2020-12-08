@@ -33,6 +33,7 @@ class _PostListViewState extends State<PostListView> {
         if (state is PostListInitial) {
           return Center(child: Text('Please Select a Location'));
         }
+
         if (state is PostListLoadInProgress) {
           return Center(child: CircularProgressIndicator());
         }

@@ -10,4 +10,6 @@ class Routes {
     'post_list_screen': (context) => PostListScreen(),
     'music_screen': (context) => MusicScreen(),
   };
+
+  static final initialRoute = 'music_screen';
 }

@@ -8,8 +8,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
-      // initialRoute: '/',
-      initialRoute: 'music_screen',
+      initialRoute: Routes.initialRoute,
       routes: Routes.routes,
     );
   }

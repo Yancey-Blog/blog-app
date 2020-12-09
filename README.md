@@ -14,3 +14,29 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter, view our
 [online documentation](https://flutter.dev/docs), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+## TODOs
+
+- Home page.
+
+- Post list page.
+
+- Post detail page.
+
+- Music page.
+
+- Search page.
+
+- Customer feedback page.
+
+- Dark and light theme.
+
+- Internationalization and localization(Japanese, Simplified Chinese, Traditional Chinese, English).
+
+- Behavior analytics by Firebase.
+
+- Performance monitoring by Firebase.
+
+- Error and Crashlytics monitoring by Firebase.
+
+- App push strategy by Firebase.

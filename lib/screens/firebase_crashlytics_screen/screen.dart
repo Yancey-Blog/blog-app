@@ -132,6 +132,16 @@ class _FirebaseCrashlyticsScreenState extends State<FirebaseCrashlyticsScreen> {
                                   .recordError(e, s, reason: 'as an example');
                             }
                           }),
+                      RaisedButton(
+                          child: const Text('关闭错误自动上报'),
+                          onPressed: () {
+                            FirebaseCrashlytics.instance
+                                .setCrashlyticsCollectionEnabled(false);
+                            Scaffold.of(context).showSnackBar(SnackBar(
+                              content: Text('关了关了行了吧'),
+                              duration: Duration(seconds: 5),
+                            ));
+                          }),
                     ],
                   ),
                 );

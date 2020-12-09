@@ -1,7 +1,29 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class YanceyMusicModel extends Equatable {
+class YanceyMusicList extends Equatable {
+  final List<YanceyMusic> yanceyMusic;
+
+  YanceyMusicList({
+    this.yanceyMusic,
+  });
+
+  @override
+  List<Object> get props => [
+        yanceyMusic,
+      ];
+
+  factory YanceyMusicList.fromJson(List<dynamic> json) {
+    final yanceyMusic = json
+        .map(
+          (i) => YanceyMusic.fromJson(i as Map<String, dynamic>),
+        )
+        .toList();
+    return YanceyMusicList(yanceyMusic: yanceyMusic);
+  }
+}
+
+class YanceyMusic extends Equatable {
   final String id;
   final String title;
   final String soundCloudUrl;
@@ -10,7 +32,7 @@ class YanceyMusicModel extends Equatable {
   final String createdAt;
   final String updatedAt;
 
-  YanceyMusicModel({
+  YanceyMusic({
     @required this.id,
     @required this.title,
     @required this.soundCloudUrl,
@@ -31,9 +53,9 @@ class YanceyMusicModel extends Equatable {
         updatedAt,
       ];
 
-  factory YanceyMusicModel.fromJson(Map<String, dynamic> json) {
-    return YanceyMusicModel(
-      id: json['id'].toString(),
+  factory YanceyMusic.fromJson(Map<String, dynamic> json) {
+    return YanceyMusic(
+      id: json['_id'].toString(),
       title: json['title'].toString(),
       soundCloudUrl: json['soundCloudUrl'].toString(),
       posterUrl: json['posterUrl'].toString(),

@@ -1,7 +1,29 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class LiveTourModel extends Equatable {
+class LiveTourList extends Equatable {
+  final List<LiveTour> liveTours;
+
+  LiveTourList({
+    this.liveTours,
+  });
+
+  @override
+  List<Object> get props => [
+        liveTours,
+      ];
+
+  factory LiveTourList.fromJson(List<dynamic> json) {
+    final liveTours = json
+        .map(
+          (i) => LiveTour.fromJson(i as Map<String, dynamic>),
+        )
+        .toList();
+    return LiveTourList(liveTours: liveTours);
+  }
+}
+
+class LiveTour extends Equatable {
   final String id;
   final String title;
   final String posterUrl;
@@ -9,7 +31,7 @@ class LiveTourModel extends Equatable {
   final String createdAt;
   final String updatedAt;
 
-  LiveTourModel({
+  LiveTour({
     @required this.id,
     @required this.title,
     @required this.posterUrl,
@@ -28,9 +50,9 @@ class LiveTourModel extends Equatable {
         updatedAt,
       ];
 
-  factory LiveTourModel.fromJson(Map<String, dynamic> json) {
-    return LiveTourModel(
-      id: json['id'].toString(),
+  factory LiveTour.fromJson(Map<String, dynamic> json) {
+    return LiveTour(
+      id: json['_id'].toString(),
       title: json['title'].toString(),
       posterUrl: json['posterUrl'].toString(),
       showTime: json['showTime'].toString(),

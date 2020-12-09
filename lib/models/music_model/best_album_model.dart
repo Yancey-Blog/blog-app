@@ -1,12 +1,17 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class BestAlbumList {
+class BestAlbumList extends Equatable {
   final List<BestAlbum> bestAlbums;
 
   BestAlbumList({
     this.bestAlbums,
   });
+
+  @override
+  List<Object> get props => [
+        bestAlbums,
+      ];
 
   factory BestAlbumList.fromJson(List<dynamic> json) {
     final bestAlbums = json
@@ -53,7 +58,7 @@ class BestAlbum extends Equatable {
 
   factory BestAlbum.fromJson(Map<String, dynamic> json) {
     return BestAlbum(
-      id: json['id'].toString(),
+      id: json['_id'].toString(),
       title: json['title'].toString(),
       artist: json['artist'].toString(),
       coverUrl: json['coverUrl'].toString(),

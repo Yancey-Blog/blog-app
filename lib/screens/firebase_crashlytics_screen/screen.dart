@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'dart:isolate';
 
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,29 @@ class _FirebaseCrashlyticsScreenState extends State<FirebaseCrashlyticsScreen> {
   void initState() {
     super.initState();
     _initializeFlutterFireFuture = initializeFlutterFire();
+  }
+
+  void collectCrashlytics() {
+    // key-value
+    FirebaseCrashlytics.instance.setCustomKey('str_key', 'hello');
+
+    // string
+    FirebaseCrashlytics.instance.log('奶子疼');
+
+    // user identifier
+    FirebaseCrashlytics.instance.setUserIdentifier('userId');
+
+    // 强制让 app 崩溃, 可用于测试安装是否成功
+    FirebaseCrashlytics.instance.crash();
+
+    // 监控隔离区的
+    // Isolate.current.addErrorListener(RawReceivePort((pair) async {
+    //   final List<dynamic> errorAndStacktrace = pair;
+    //   await FirebaseCrashlytics.instance.recordError(
+    //     errorAndStacktrace.first,
+    //     errorAndStacktrace.last,
+    //   );
+    // }).sendPort);
   }
 
   @override

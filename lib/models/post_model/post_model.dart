@@ -67,18 +67,18 @@ class PostItem {
 
   factory PostItem.fromJson(Map<String, dynamic> json) {
     return PostItem(
-      id: json['_id'] as String,
-      posterUrl: json['posterUrl'] as String,
-      title: json['title'] as String,
-      summary: json['summary'] as String,
-      content: json['content'] as String,
+      id: json['_id'].toString(),
+      posterUrl: json['posterUrl'].toString(),
+      title: json['title'].toString(),
+      summary: json['summary'].toString(),
+      content: json['content'].toString(),
       tags: List<String>.from(json['tags'] as Iterable<dynamic>),
-      lastModifiedDate: json['lastModifiedDate'] as String,
+      lastModifiedDate: json['lastModifiedDate'].toString(),
       like: json['like'] as int,
       pv: json['pv'] as int,
       isPublic: json['isPublic'] as bool,
-      createdAt: json['createdAt'] as String,
-      updatedAt: json['updatedAt'] as String,
+      createdAt: json['createdAt'].toString(),
+      updatedAt: json['updatedAt'].toString(),
     );
   }
 }

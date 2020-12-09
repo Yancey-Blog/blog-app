@@ -12,5 +12,5 @@ class Routes {
     'firebase_crashlytics_screen': (context) => FirebaseCrashlyticsScreen(),
   };
 
-  static final initialRoute = 'firebase_crashlytics_screen';
+  static final initialRoute = 'music_screen';
 }

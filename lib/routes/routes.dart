@@ -9,7 +9,8 @@ class Routes {
     'post_detail_screen': (context) => PostDetailScreen(),
     'post_list_screen': (context) => PostListScreen(),
     'music_screen': (context) => MusicScreen(),
+    'firebase_crashlytics_screen': (context) => FirebaseCrashlyticsScreen(),
   };
 
-  static final initialRoute = 'music_screen';
+  static final initialRoute = 'firebase_crashlytics_screen';
 }

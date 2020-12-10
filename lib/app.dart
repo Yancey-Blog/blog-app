@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'routes/routes.dart';
-// import 'shared/firebase/init_firebase_crashlytics.dart';
+import 'shared/firebase/init_firebase.dart';
 
 class App extends StatefulWidget {
   @override
@@ -8,13 +8,11 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  // Future<void> _initializeFlutterFireFuture;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   _initializeFlutterFireFuture = initializeFlutterFire();
-  // }
+  @override
+  void initState() {
+    super.initState();
+    initializeFirebaseCrashlytics();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +22,9 @@ class _AppState extends State<App> {
       ),
       initialRoute: Routes.initialRoute,
       routes: Routes.routes,
+      navigatorObservers: <NavigatorObserver>[
+        FirebaseAnalyticsInitial.observer
+      ],
     );
   }
 }

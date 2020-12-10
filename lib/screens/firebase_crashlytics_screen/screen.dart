@@ -14,12 +14,12 @@ class FirebaseCrashlyticsScreen extends StatefulWidget {
 }
 
 class _FirebaseCrashlyticsScreenState extends State<FirebaseCrashlyticsScreen> {
-  Future<void> _initializeFlutterFireFuture;
+  Future<void> _initializeFirebaseCrashlytics;
 
   @override
   void initState() {
     super.initState();
-    _initializeFlutterFireFuture = initializeFlutterFire();
+    _initializeFirebaseCrashlytics = initializeFirebaseCrashlytics();
   }
 
   void collectCrashlytics() {
@@ -53,7 +53,7 @@ class _FirebaseCrashlyticsScreenState extends State<FirebaseCrashlyticsScreen> {
           title: const Text('Crashlytics example app'),
         ),
         body: FutureBuilder(
-          future: _initializeFlutterFireFuture,
+          future: _initializeFirebaseCrashlytics,
           builder: (context, snapshot) {
             switch (snapshot.connectionState) {
               case ConnectionState.done:
@@ -69,7 +69,7 @@ class _FirebaseCrashlyticsScreenState extends State<FirebaseCrashlyticsScreen> {
                           child: const Text('Key'),
                           onPressed: () {
                             FirebaseCrashlytics.instance
-                                .setCustomKey('example', 'flutterfire');
+                                .setCustomKey('key', '叫爸爸叫爸爸');
                             Scaffold.of(context).showSnackBar(SnackBar(
                               content: Text(
                                   'Custom Key "example: flutterfire" has been set \n'

@@ -18,7 +18,7 @@ class _FirebaseCrashlyticsScreenState extends State<FirebaseCrashlyticsScreen> {
   @override
   void initState() {
     super.initState();
-    _initializeFlutterFireFuture = initializeFlutterFire();
+    _initializeFlutterFireFuture = initializeFirebaseCrashlytics();
   }
 
   @override

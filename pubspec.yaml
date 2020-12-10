@@ -28,10 +28,9 @@ dependencies:
   device_info: ^0.4.2+9
   equatable: ^1.2.5
   firebase_analytics: ^6.3.0
-  firebase_auth: ^0.18.4+1
   firebase_core: ^0.5.3
   firebase_crashlytics: ^0.2.4
-  firebase_messaging: ^7.0.3
+  firebase_messaging: 8.0.0-dev.11
   firebase_performance: ^0.4.3
   flutter:
     sdk: flutter

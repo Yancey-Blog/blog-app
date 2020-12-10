@@ -6,3 +6,4 @@ export 'post_list_screen/screen.dart';
 export 'music_screen/screen.dart';
 export 'firebase_crashlytics_screen/screen.dart';
 export 'firebase_analytics_screen/screen.dart';
+export 'firebase_messaging_screen/screen.dart';

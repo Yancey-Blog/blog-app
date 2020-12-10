@@ -11,7 +11,8 @@ class Routes {
     'music_screen': (context) => MusicScreen(),
     'firebase_crashlytics_screen': (context) => FirebaseCrashlyticsScreen(),
     'firebase_analytics_screen': (context) => FirebaseAnalyticsScreen(),
+    'firebase_messaging_screen': (context) => FirebaseMessagingScreen(),
   };
 
-  static final initialRoute = 'post_list_screen';
+  static final initialRoute = 'firebase_messaging_screen';
 }

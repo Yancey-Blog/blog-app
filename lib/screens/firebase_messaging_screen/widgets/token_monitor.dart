@@ -5,10 +5,9 @@ import 'package:flutter/material.dart';
 ///
 /// Also monitors token refreshes and updates state.
 class TokenMonitor extends StatefulWidget {
-  // ignore: public_member_api_docs
-  TokenMonitor(this._builder);
-
   final Widget Function(String token) _builder;
+
+  TokenMonitor(this._builder);
 
   @override
   State<StatefulWidget> createState() => _TokenMonitor();

@@ -9,16 +9,20 @@ class PostDetailView extends StatefulWidget {
   PostDetailView({Key key, @required this.id}) : super(key: key);
 
   @override
-  _PostDetailViewState createState() => _PostDetailViewState();
+  _PostDetailViewState createState() => _PostDetailViewState(id);
 }
 
 class _PostDetailViewState extends State<PostDetailView> {
+  final String id;
+
+  _PostDetailViewState(this.id);
+
   @override
   void initState() {
     super.initState();
 
     BlocProvider.of<PostDetailBloc>(context).add(
-      PostDetailRequested(id: widget.id),
+      PostDetailRequested(id: id),
     );
   }
 

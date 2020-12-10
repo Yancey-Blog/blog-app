@@ -10,7 +10,8 @@ class Routes {
     'post_list_screen': (context) => PostListScreen(),
     'music_screen': (context) => MusicScreen(),
     'firebase_crashlytics_screen': (context) => FirebaseCrashlyticsScreen(),
+    'firebase_analytics_screen': (context) => FirebaseAnalyticsScreen(),
   };
 
-  static final initialRoute = 'firebase_crashlytics_screen';
+  static final initialRoute = 'post_list_screen';
 }

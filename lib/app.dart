@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+
 import 'routes/routes.dart';
 import 'shared/firebase/init_firebase.dart';
 
@@ -22,6 +24,18 @@ class _AppState extends State<App> {
       theme: ThemeData(
         primarySwatch: Colors.pink,
       ),
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', ''),
+        const Locale('ar', ''),
+        const Locale.fromSubtags(
+          languageCode: 'zh',
+        ),
+      ],
       initialRoute: Routes.initialRoute,
       routes: Routes.routes,
       navigatorObservers: <NavigatorObserver>[firebaseAnalyticsObserver],

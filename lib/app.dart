@@ -8,6 +8,8 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  final firebaseAnalyticsObserver = FirebaseAnalyticsInitial.observer;
+
   @override
   void initState() {
     super.initState();
@@ -22,9 +24,7 @@ class _AppState extends State<App> {
       ),
       initialRoute: Routes.initialRoute,
       routes: Routes.routes,
-      navigatorObservers: <NavigatorObserver>[
-        FirebaseAnalyticsInitial.observer
-      ],
+      navigatorObservers: <NavigatorObserver>[firebaseAnalyticsObserver],
     );
   }
 }

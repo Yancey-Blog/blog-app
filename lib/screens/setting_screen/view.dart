@@ -52,7 +52,6 @@ class _SettingViewState extends State<SettingView> {
           );
         },
         itemBuilder: (context, index) {
-          print(index);
           return ListTile(
             title: Text(_items.values.toList()[index]),
             leading: Radio(

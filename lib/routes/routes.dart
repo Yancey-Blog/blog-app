@@ -13,7 +13,8 @@ class Routes {
     'firebase_analytics_screen': (context) => FirebaseAnalyticsScreen(),
     'firebase_messaging_screen': (context) => FirebaseMessagingScreen(),
     'setting_screen': (context) => SettingScreen(),
+    'entrance_screen': (context) => EntranceScreen(),
   };
 
-  static final initialRoute = 'setting_screen';
+  static final initialRoute = 'entrance_screen';
 }

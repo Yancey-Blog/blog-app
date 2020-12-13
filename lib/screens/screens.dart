@@ -8,3 +8,4 @@ export 'firebase_crashlytics_screen/screen.dart';
 export 'firebase_analytics_screen/screen.dart';
 export 'firebase_messaging_screen/screen.dart';
 export 'setting_screen/screen.dart';
+export 'entrance_screen/screen.dart';

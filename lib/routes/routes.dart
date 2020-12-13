@@ -12,7 +12,8 @@ class Routes {
     'firebase_crashlytics_screen': (context) => FirebaseCrashlyticsScreen(),
     'firebase_analytics_screen': (context) => FirebaseAnalyticsScreen(),
     'firebase_messaging_screen': (context) => FirebaseMessagingScreen(),
+    'setting_screen': (context) => SettingScreen(),
   };
 
-  static final initialRoute = 'post_list_screen';
+  static final initialRoute = 'setting_screen';
 }

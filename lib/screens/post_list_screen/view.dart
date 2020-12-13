@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:blog_app/blocs/blocs.dart';
-import 'package:blog_app/generated/i18n.dart';
 
 class ScreenArguments {
   final String id;
@@ -45,9 +44,7 @@ class _PostListViewState extends State<PostListView> {
 
           return Scaffold(
             appBar: AppBar(
-              title: Text(
-                I18n.of(context).appname,
-              ),
+              title: Text('列表页'),
             ),
             body: ListView.builder(
               itemCount: posts.length,

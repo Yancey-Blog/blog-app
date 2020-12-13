@@ -246,16 +246,18 @@ class _Application extends State<Application> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(children: [
-          MetaCard('Permissions', Permissions()),
-          MetaCard('FCM Token', TokenMonitor((token) {
-            _token = token;
-            return token == null
-                ? CircularProgressIndicator()
-                : Text(token, style: TextStyle(fontSize: 12));
-          })),
-          MetaCard('Message Stream', MessageList()),
-        ]),
+        child: Column(
+          children: [
+            MetaCard('Permissions', Permissions()),
+            MetaCard('FCM Token', TokenMonitor((token) {
+              _token = token;
+              return token == null
+                  ? CircularProgressIndicator()
+                  : Text(token, style: TextStyle(fontSize: 12));
+            })),
+            MetaCard('Message Stream', MessageList()),
+          ],
+        ),
       ),
     );
   }

@@ -1,7 +1,0 @@
-{
-  "title": "Hello World!",
-  "@title": {
-    "description": "The conventional newborn programmer greeting",
-    "type": "text"
-  }
-}

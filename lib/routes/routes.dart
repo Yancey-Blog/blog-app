@@ -14,5 +14,5 @@ class Routes {
     'firebase_messaging_screen': (context) => FirebaseMessagingScreen(),
   };
 
-  static final initialRoute = 'firebase_messaging_screen';
+  static final initialRoute = 'post_list_screen';
 }

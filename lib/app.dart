@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'routes/routes.dart';
+import 'i18n/i18n.dart';
+import 'themes/light_theme.dart';
 import 'shared/firebase/init_firebase.dart';
 
 class App extends StatefulWidget {
@@ -21,21 +22,10 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.pink,
-      ),
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('en', ''),
-        const Locale('ar', ''),
-        const Locale.fromSubtags(
-          languageCode: 'zh',
-        ),
-      ],
+      theme: LightTheme.lightTheme,
+      localizationsDelegates: I18nConfig.localizationsDelegates,
+      supportedLocales: I18nConfig.supportedLocales,
+      localeResolutionCallback: I18nConfig.localeResolutionCallback,
       initialRoute: Routes.initialRoute,
       routes: Routes.routes,
       navigatorObservers: <NavigatorObserver>[firebaseAnalyticsObserver],

@@ -1,9 +1,16 @@
 {
-  "defaultLocale": "en-US",
-  "locales": ["en-US", "zh-CN", "ja-JP"],
-  "localePath": "i18n",
-  "generatedPath": "lib/generated",
-  "ltr": ["en-US", "zh-CN", "ja-JP"],
-  "rtl": [],
-  "googleTranslateApiKey": "AIzaSyDiQrY6N-yu_6ipGtEKYRxeQOTGzXz1j1M"
+    "defaultLocale": "en-US",
+    "locales": [
+        "en-US",
+        "ja-JP",
+        "zh-CN"
+    ],
+    "localePath": "i18n",
+    "generatedPath": "lib/generated",
+    "ltr": [
+        "en-US",
+        "ja-JP",
+        "zh-CN"
+    ],
+    "rtl": []
 }

@@ -40,3 +40,13 @@ samples, guidance on mobile development, and a full API reference.
 - Error and Crashlytics monitoring by Firebase.
 
 - App push strategy by Firebase.
+
+## Recipes
+
+### 编译 iOS 时控制台报大量 **expected angle-bracketed instead**
+
+在 xcode 中将 Pods > Build Setting 的 `Quoted Include In Framework Header` 设为 `No` 即可.
+
+### 使用 vscode 的插件 `vscode-flutter-i18n-json` 生成 i18n 文件
+
+

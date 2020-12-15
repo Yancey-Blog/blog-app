@@ -48,5 +48,3 @@ samples, guidance on mobile development, and a full API reference.
 在 xcode 中将 Pods > Build Setting 的 `Quoted Include In Framework Header` 设为 `No` 即可.
 
 ### 使用 vscode 的插件 `vscode-flutter-i18n-json` 生成 i18n 文件
-
-

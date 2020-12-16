@@ -16,5 +16,5 @@ class Routes {
     'entrance_screen': (context) => EntranceScreen(),
   };
 
-  static final initialRoute = 'entrance_screen';
+  static final initialRoute = '/';
 }

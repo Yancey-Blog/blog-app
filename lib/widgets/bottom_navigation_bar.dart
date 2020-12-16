@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-import 'package:blog_app/screens/screens.dart';
-import './sliver_app_bar.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blog_app/blocs/blocs.dart';
 
 class BottomNavigationBarWidget extends StatefulWidget {
   BottomNavigationBarWidget({Key key}) : super(key: key);
@@ -18,73 +18,42 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       _selectedIndex = index;
     });
 
-    if (index == 0) {
-      _pushToBatteryPage();
-    }
-
-    if (index == 1) {
-      _pushToDeviceInfoPage();
-    }
-
-    if (index == 2) {
-      _pushToSliverPage();
-    }
-  }
-
-  void _pushToBatteryPage() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          return BatteryScreen();
-        },
-      ),
-    );
-  }
-
-  void _pushToDeviceInfoPage() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          return DeviceInfoScreen();
-        },
-      ),
-    );
-  }
-
-  void _pushToSliverPage() {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (BuildContext context) {
-          return SliverPage();
-        },
-      ),
-    );
+    BlocProvider.of<SwitchBottomBarBloc>(context)
+        .add(SwitchBottomBarRequested(index: index));
   }
 
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      items: const <BottomNavigationBarItem>[
-        // BottomNavigationBarItem(
-        //   icon: Icon(Icons.home),
-        //   label: 'Home',
-        // ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.battery_full),
-          label: 'Battery',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.device_hub),
-          label: 'Device',
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.list),
-          label: 'Sliver',
-        ),
-      ],
-      currentIndex: _selectedIndex,
-      selectedItemColor: Colors.amber[800],
-      onTap: _onItemTapped,
-    );
+    return BlocProvider(
+        create: (context) => SwitchBottomBarBloc(),
+        child: CupertinoTabBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.add,
+                size: 24,
+              ),
+              label: 'Battery',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.delete,
+                size: 24,
+              ),
+              label: 'Device',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                CupertinoIcons.home,
+                size: 24,
+              ),
+              label: 'Sliver',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          // selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
+          // type: BottomNavigationBarType.fixed,
+        ));
   }
 }

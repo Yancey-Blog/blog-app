@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blog_app/blocs/blocs.dart';
 
+import 'widgets/player.dart';
+
 class MusicView extends StatefulWidget {
   MusicView({Key key}) : super(key: key);
 
@@ -21,44 +23,43 @@ class _MusicViewState extends State<MusicView> {
   Widget build(BuildContext context) {
     return BlocBuilder<MusicBloc, MusicState>(
       builder: (context, state) {
-        if (state is MusicInitial) {
-          return Center(child: Text('Please Select a Location'));
-        }
+        Widget _renderedWidget = Container();
 
         if (state is MusicLoadInProgress) {
-          return Center(child: CircularProgressIndicator());
+          _renderedWidget = Center(child: CircularProgressIndicator());
         }
 
         if (state is MusicLoadSuccess) {
           final bestAlbums = state.bestAlbums;
 
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('Music'),
-            ),
-            body: ListView.builder(
-              itemCount: bestAlbums.length,
-              padding: const EdgeInsets.all(8),
-              itemBuilder: (context, index) {
-                final bestAlbum = bestAlbums[index];
+          _renderedWidget = ListView.builder(
+            itemCount: bestAlbums.length,
+            padding: const EdgeInsets.all(8),
+            itemBuilder: (context, index) {
+              final bestAlbum = bestAlbums[index];
 
-                return ListTile(
-                  title: Text(bestAlbum.title),
-                  subtitle: Text(bestAlbum.artist),
-                );
-              },
-            ),
+              return ListTile(
+                title: Text(bestAlbum.title),
+                subtitle: Text(bestAlbum.artist),
+              );
+            },
           );
         }
 
         if (state is MusicLoadFailure) {
-          return Center(
+          _renderedWidget = Center(
             child: Text(
               state.errorMessage,
               style: TextStyle(color: Colors.red),
             ),
           );
         }
+
+        return Scaffold(
+          // body: _renderedWidget,
+          resizeToAvoidBottomInset: true,
+          body: Player(),
+        );
       },
     );
   }

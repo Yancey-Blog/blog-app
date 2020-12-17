@@ -9,13 +9,13 @@ class HomeScreen extends StatelessWidget {
   Widget _renderScreen(int index) {
     switch (index) {
       case 0:
-        return PostListScreen();
+        return MusicScreen();
       case 1:
         return BatteryScreen();
       case 2:
         return DeviceInfoScreen();
       default:
-        return PostListScreen();
+        return MusicScreen();
     }
   }
 
@@ -25,7 +25,7 @@ class HomeScreen extends StatelessWidget {
       create: (context) => BottomBarBloc(),
       child: BlocBuilder<BottomBarBloc, BottomBarState>(
         builder: (context, state) {
-          Widget _currentTabWidget = PostListScreen();
+          Widget _currentTabWidget = MusicScreen();
 
           if (state is CurrentIndexChanged) {
             _currentTabWidget = _renderScreen(state.currentIndex);

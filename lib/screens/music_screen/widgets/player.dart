@@ -5,8 +5,7 @@ class Player extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Stack(
-        overflow: Overflow.visible,
+      child: Column(
         children: [
           Container(
             child: Image.asset(
@@ -16,96 +15,69 @@ class Player extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          Positioned(
-            width: MediaQuery.of(context).size.width,
-            top: 340,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding: const EdgeInsets.only(left: 24),
-                  child: Text(
-                    'Recommended',
-                    style: TextStyle(
-                      fontSize: 32,
-                      color: Color(0xff0b0f26),
-                    ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                padding: const EdgeInsets.only(left: 24),
+                child: Text(
+                  'Recommended',
+                  style: TextStyle(
+                    fontSize: 32,
+                    color: Color(0xff0b0f26),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 24, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 0),
+              ),
+              Column(
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 24, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 12, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 1),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 12, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 12, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 1),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 12, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 12, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 1),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 12, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 12, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 1),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 12, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 12, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 1),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 12, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 12, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 1),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 12, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 12, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 1),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 12, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                      left: 24, right: 24, top: 12, bottom: 12),
-                  decoration: BoxDecoration(
-                    color: Color.fromRGBO(239, 245, 249, 1),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 24, right: 24, top: 12, bottom: 12),
+                    child: MusicItem(),
                   ),
-                  child: MusicItem(),
-                ),
-              ],
-            ),
+                ],
+              ),
+            ],
           ),
         ],
       ),

@@ -56,6 +56,7 @@ class _MusicViewState extends State<MusicView> {
         }
 
         return Scaffold(
+          backgroundColor: Color.fromRGBO(239, 245, 249, 1),
           // body: _renderedWidget,
           body: Player(),
         );

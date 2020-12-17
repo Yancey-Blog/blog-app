@@ -18,14 +18,14 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
       _selectedIndex = index;
     });
 
-    BlocProvider.of<SwitchBottomBarBloc>(context)
-        .add(SwitchBottomBarRequested(index: index));
+    BlocProvider.of<BottomBarBloc>(context)
+        .add(BottomBarItemTapped(index: index));
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (context) => SwitchBottomBarBloc(),
+        create: (context) => BottomBarBloc(),
         child: CupertinoTabBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(

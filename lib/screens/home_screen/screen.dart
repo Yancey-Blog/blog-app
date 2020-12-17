@@ -9,34 +9,29 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SwitchBottomBarBloc(),
-      child: BlocBuilder<SwitchBottomBarBloc, SwitchBottomBarState>(
+      create: (context) => BottomBarBloc(),
+      child: BlocBuilder<BottomBarBloc, BottomBarState>(
         builder: (context, state) {
           Widget _currBody = PostListScreen();
 
-          if (state is SwitchBottomBarSuccess) {
-            if (state.index == 0) {
+          if (state is CurrentIndexChanged) {
+            if (state.currentIndex == 0) {
               _currBody = PostListScreen();
-              ;
             }
 
-            if (state.index == 1) {
+            if (state.currentIndex == 1) {
               _currBody = BatteryScreen();
             }
 
-            if (state.index == 2) {
+            if (state.currentIndex == 2) {
               _currBody = DeviceInfoScreen();
             }
-            return Scaffold(
-              bottomNavigationBar: BottomNavigationBarWidget(),
-              body: _currBody,
-            );
-          } else {
-            return Scaffold(
-              bottomNavigationBar: BottomNavigationBarWidget(),
-              body: _currBody,
-            );
           }
+
+          return Scaffold(
+            bottomNavigationBar: BottomNavigationBarWidget(),
+            body: _currBody,
+          );
         },
       ),
     );

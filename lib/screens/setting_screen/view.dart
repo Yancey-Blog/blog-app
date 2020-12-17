@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:blog_app/blocs/blocs.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:blog_app/blocs/blocs.dart';
 import 'package:blog_app/generated/i18n.dart';
 
 class SettingView extends StatefulWidget {
@@ -23,7 +23,7 @@ class _SettingViewState extends State<SettingView> {
   void initState() {
     super.initState();
 
-    // BlocProvider.of<SettingBloc>(context).add(SettingRequested());
+    BlocProvider.of<SettingBloc>(context).add(SwitchLanguageRequested());
   }
 
   void onLocaleChange(Locale locale) {

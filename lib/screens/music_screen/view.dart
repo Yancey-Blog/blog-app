@@ -57,7 +57,6 @@ class _MusicViewState extends State<MusicView> {
 
         return Scaffold(
           // body: _renderedWidget,
-          resizeToAvoidBottomInset: true,
           body: Player(),
         );
       },

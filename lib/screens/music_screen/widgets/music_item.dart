@@ -58,10 +58,10 @@ class MusicItem extends StatelessWidget {
           ],
         ),
         Text(
-          '◕‿◕',
+          '...',
           style: TextStyle(
             color: Color(0xff93a8b3),
-            fontSize: 12,
+            fontSize: 20,
           ),
         ),
       ],

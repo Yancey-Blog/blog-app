@@ -31,9 +31,7 @@ class _PostListViewState extends State<PostListView> {
   Widget build(BuildContext context) {
     return BlocBuilder<PostListBloc, PostListState>(
       builder: (context, state) {
-        if (state is PostListInitial) {
-          return Center(child: Text('Please Select a Location'));
-        }
+        Widget _renderedWidget = Container();
 
         if (state is PostListLoadInProgress) {
           return Center(child: CircularProgressIndicator());
@@ -42,34 +40,36 @@ class _PostListViewState extends State<PostListView> {
         if (state is PostListLoadSuccess) {
           final posts = state.posts;
 
-          return Scaffold(
-            appBar: AppBar(
-              title: Text('列表页'),
-            ),
-            body: ListView.builder(
-              itemCount: posts.length,
-              padding: const EdgeInsets.all(8),
-              itemBuilder: (context, index) {
-                final post = posts[index];
+          _renderedWidget = ListView.builder(
+            itemCount: posts.length,
+            padding: const EdgeInsets.all(8),
+            itemBuilder: (context, index) {
+              final post = posts[index];
 
-                return ListTile(
-                  title: Text(post.title),
-                  subtitle: Text((post.tags).join(', ')),
-                  onTap: () => onTapped(context, post.id),
-                );
-              },
-            ),
+              return ListTile(
+                title: Text(post.title),
+                subtitle: Text((post.tags).join(', ')),
+                onTap: () => onTapped(context, post.id),
+              );
+            },
           );
         }
 
         if (state is PostListLoadFailure) {
-          return Center(
+          _renderedWidget = Center(
             child: Text(
               state.errorMessage,
               style: TextStyle(color: Colors.red),
             ),
           );
         }
+
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('列表页'),
+          ),
+          body: _renderedWidget,
+        );
       },
     );
   }

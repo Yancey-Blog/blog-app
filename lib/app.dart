@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'routes/routes.dart';
 import 'generated/i18n.dart';
@@ -29,6 +30,10 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MaterialApp(
       theme: LightTheme.lightTheme,
       localizationsDelegates: I18nConfig.localizationsDelegates,

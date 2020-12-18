@@ -37,6 +37,7 @@ class _AppState extends State<App> {
       initialRoute: Routes.initialRoute,
       routes: Routes.routes,
       navigatorObservers: <NavigatorObserver>[firebaseAnalyticsObserver],
+      debugShowCheckedModeBanner: false,
     );
   }
 }

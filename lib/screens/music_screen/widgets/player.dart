@@ -28,16 +28,22 @@ class Player extends StatelessWidget {
                   ),
                 ),
               ),
-              MusicItem(),
-              MusicItem(),
-              MusicItem(),
-              MusicItem(),
-              MusicItem(),
-              MusicItem(),
-              MusicItem(),
-              MusicItem(),
-              MusicItem(),
-              MusicItem(),
+              Container(
+                height: 64.0 * 10,
+                child: ListView.separated(
+                  itemCount: 10,
+                  padding: const EdgeInsets.all(8),
+                  separatorBuilder: (context, index) {
+                    return Container(
+                      height: 1,
+                      color: Colors.black12,
+                    );
+                  },
+                  itemBuilder: (context, index) {
+                    return MusicItem(index: index);
+                  },
+                ),
+              ),
             ],
           ),
         ],

@@ -1,6 +1,15 @@
 import 'package:flutter/material.dart';
 
 class MusicItem extends StatelessWidget {
+  final int index;
+
+  const MusicItem({Key key, @required this.index}) : super(key: key);
+
+  String formatIndex(int index) {
+    final serialNumber = index + 1;
+    return serialNumber < 10 ? '0${serialNumber}' : serialNumber.toString();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +24,7 @@ class MusicItem extends StatelessWidget {
                 height: 24,
                 child: Center(
                   child: Text(
-                    '98',
+                    formatIndex(index),
                     style: TextStyle(
                       color: Color(0xff93a8b3),
                       fontSize: 12,

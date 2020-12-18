@@ -28,55 +28,16 @@ class Player extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 24, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 12, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 12, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 12, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 12, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 12, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 12, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 12, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                        left: 24, right: 24, top: 12, bottom: 12),
-                    child: MusicItem(),
-                  ),
-                ],
-              ),
+              MusicItem(),
+              MusicItem(),
+              MusicItem(),
+              MusicItem(),
+              MusicItem(),
+              MusicItem(),
+              MusicItem(),
+              MusicItem(),
+              MusicItem(),
+              MusicItem(),
             ],
           ),
         ],

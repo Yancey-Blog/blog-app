@@ -14,6 +14,7 @@ class Routes {
     'firebase_messaging_screen': (context) => FirebaseMessagingScreen(),
     'setting_screen': (context) => SettingScreen(),
     'entrance_screen': (context) => EntranceScreen(),
+    'login_screen': (context) => LoginScreen(),
   };
 
   static final initialRoute = '/';

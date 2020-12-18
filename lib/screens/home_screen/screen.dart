@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
             body: IndexedStack(
               index: (state is CurrentIndexChanged) ? state.currentIndex : 0,
               children: <Widget>[
-                MusicScreen(),
+                LoginScreen(),
                 BatteryScreen(),
                 DeviceInfoScreen()
               ],

@@ -9,3 +9,8 @@ class MusicRequested extends MusicEvent {
   @override
   List<Object> get props => [];
 }
+
+class PlayerRequested extends MusicEvent {
+  @override
+  List<Object> get props => [];
+}

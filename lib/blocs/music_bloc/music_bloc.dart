@@ -11,9 +11,12 @@ part 'music_state.dart';
 
 class MusicBloc extends Bloc<MusicEvent, MusicState> {
   final MusicRepository musicRepository;
+  final PlayerRepository playerRepository;
 
-  MusicBloc({@required this.musicRepository})
-      : assert(musicRepository != null),
+  MusicBloc({
+    @required this.musicRepository,
+    @required this.playerRepository,
+  })  : assert(musicRepository != null && playerRepository != null),
         super(MusicInitial());
 
   @override
@@ -25,6 +28,15 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
       try {
         final bestAlbums = await musicRepository.fetchBestAlbums();
         yield MusicLoadSuccess(bestAlbums: bestAlbums);
+      } catch (_, stackTrace) {
+        yield MusicLoadFailure('$_ $stackTrace');
+      }
+    }
+    if (event is PlayerRequested) {
+      yield MusicLoadInProgress();
+      try {
+        final players = await playerRepository.fetchPlayers();
+        yield PlayerLoadSuccess(players: players);
       } catch (_, stackTrace) {
         yield MusicLoadFailure('$_ $stackTrace');
       }

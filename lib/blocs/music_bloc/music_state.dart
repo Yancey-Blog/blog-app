@@ -15,11 +15,23 @@ class MusicLoadInProgress extends MusicState {}
 class MusicLoadSuccess extends MusicState {
   final List<BestAlbum> bestAlbums;
 
-  const MusicLoadSuccess({@required this.bestAlbums})
-      : assert(bestAlbums != null);
+  const MusicLoadSuccess({
+    @required this.bestAlbums,
+  }) : assert(bestAlbums != null);
 
   @override
   List<Object> get props => [bestAlbums];
+}
+
+class PlayerLoadSuccess extends MusicState {
+  final List<Player> players;
+
+  const PlayerLoadSuccess({
+    @required this.players,
+  }) : assert(players != null);
+
+  @override
+  List<Object> get props => [players];
 }
 
 class MusicLoadFailure extends MusicState {

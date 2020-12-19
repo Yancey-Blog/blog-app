@@ -1,6 +1,7 @@
-final players = '''
+final getPlayers = '''
   query Players {
     players {
+      id
       title
       artist
       lrc

@@ -4,50 +4,40 @@ import './music_item.dart';
 class Player extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            child: Image.asset(
-              'assets/images/music_screen/top-bg@3x.png',
-              width: MediaQuery.of(context).size.width,
-              height: 510,
-              fit: BoxFit.cover,
+    return Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        padding: const EdgeInsets.only(
+          top: 300,
+        ),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/images/music_screen/top-bg@3x.png'),
+              fit: BoxFit.contain),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: const EdgeInsets.only(left: 24),
+              child: Text(
+                'Recommended',
+                style: TextStyle(
+                  fontSize: 32,
+                  color: Color(0xff0b0f26),
+                ),
+              ),
             ),
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Container(
-                padding: const EdgeInsets.only(left: 24),
-                child: Text(
-                  'Recommended',
-                  style: TextStyle(
-                    fontSize: 32,
-                    color: Color(0xff0b0f26),
-                  ),
-                ),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10,
+                padding: const EdgeInsets.all(8),
+                itemBuilder: (context, index) {
+                  return MusicItem(index: index);
+                },
               ),
-              Container(
-                height: 64.0 * 10,
-                child: ListView.separated(
-                  itemCount: 10,
-                  padding: const EdgeInsets.all(8),
-                  separatorBuilder: (context, index) {
-                    return Container(
-                      height: 1,
-                      color: Colors.black12,
-                    );
-                  },
-                  itemBuilder: (context, index) {
-                    return MusicItem(index: index);
-                  },
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+          ],
+        ));
   }
 }

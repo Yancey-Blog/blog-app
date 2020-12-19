@@ -16,7 +16,7 @@ class _MusicViewState extends State<MusicView> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<MusicBloc>(context).add(MusicRequested());
+    BlocProvider.of<MusicBloc>(context).add(BestAlbumRequested());
   }
 
   @override
@@ -29,7 +29,7 @@ class _MusicViewState extends State<MusicView> {
           _renderedWidget = Center(child: CircularProgressIndicator());
         }
 
-        if (state is MusicLoadSuccess) {
+        if (state is BestAlbumLoadSuccess) {
           final bestAlbums = state.bestAlbums;
 
           _renderedWidget = ListView.builder(

@@ -10,24 +10,24 @@ part 'music_event.dart';
 part 'music_state.dart';
 
 class MusicBloc extends Bloc<MusicEvent, MusicState> {
-  final MusicRepository musicRepository;
+  final BestAlbumRepository bestAlbumRepository;
   final PlayerRepository playerRepository;
 
   MusicBloc({
-    @required this.musicRepository,
+    @required this.bestAlbumRepository,
     @required this.playerRepository,
-  })  : assert(musicRepository != null && playerRepository != null),
+  })  : assert(bestAlbumRepository != null && playerRepository != null),
         super(MusicInitial());
 
   @override
   Stream<MusicState> mapEventToState(
     MusicEvent event,
   ) async* {
-    if (event is MusicRequested) {
+    if (event is BestAlbumRequested) {
       yield MusicLoadInProgress();
       try {
-        final bestAlbums = await musicRepository.fetchBestAlbums();
-        yield MusicLoadSuccess(bestAlbums: bestAlbums);
+        final bestAlbums = await bestAlbumRepository.fetchBestAlbums();
+        yield BestAlbumLoadSuccess(bestAlbums: bestAlbums);
       } catch (_, stackTrace) {
         yield MusicLoadFailure('$_ $stackTrace');
       }

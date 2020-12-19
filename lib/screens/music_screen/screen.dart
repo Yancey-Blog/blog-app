@@ -5,7 +5,8 @@ import 'package:blog_app/blocs/blocs.dart';
 import 'view.dart';
 
 class MusicScreen extends StatelessWidget {
-  final musicRepository = MusicRepository();
+  final bestAlbumRepository = BestAlbumRepository();
+  final playerRepository = PlayerRepository();
 
   MusicScreen({Key key}) : super(key: key);
 
@@ -13,7 +14,8 @@ class MusicScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => MusicBloc(
-        musicRepository: musicRepository,
+        bestAlbumRepository: bestAlbumRepository,
+        playerRepository: playerRepository,
       ),
       child: MusicView(),
     );

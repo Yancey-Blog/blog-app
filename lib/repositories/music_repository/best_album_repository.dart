@@ -4,7 +4,7 @@ import 'package:blog_app/graphql/apollo_client.dart';
 import 'package:blog_app/services/services.dart';
 import 'package:blog_app/models/models.dart';
 
-class MusicRepository {
+class BestAlbumRepository {
   Future<List<BestAlbum>> fetchBestAlbums() async {
     final result = await client.query(
       QueryOptions(

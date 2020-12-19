@@ -12,10 +12,10 @@ class MusicInitial extends MusicState {}
 
 class MusicLoadInProgress extends MusicState {}
 
-class MusicLoadSuccess extends MusicState {
+class BestAlbumLoadSuccess extends MusicState {
   final List<BestAlbum> bestAlbums;
 
-  const MusicLoadSuccess({
+  const BestAlbumLoadSuccess({
     @required this.bestAlbums,
   }) : assert(bestAlbums != null);
 

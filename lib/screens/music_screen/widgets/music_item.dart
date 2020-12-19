@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/models/models.dart';
 
 class MusicItem extends StatelessWidget {
   final int index;
+  final Player player;
 
-  const MusicItem({Key key, @required this.index}) : super(key: key);
+  const MusicItem({
+    Key key,
+    @required this.index,
+    this.player,
+  }) : super(key: key);
 
   String formatIndex(int index) {
     final serialNumber = index + 1;
@@ -37,8 +43,8 @@ class MusicItem extends StatelessWidget {
                   margin: EdgeInsets.only(right: 12, left: 6),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(4),
-                    child: Image.asset(
-                      'assets/images/music_screen/top-bg@3x.png',
+                    child: Image.network(
+                      player.coverUrl,
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,
@@ -52,7 +58,7 @@ class MusicItem extends StatelessWidget {
                       height: 20,
                       child: Center(
                         child: Text(
-                          'Mirage',
+                          player.title,
                           style: TextStyle(
                             color: Color(0xff3c425b),
                             fontSize: 14,
@@ -65,7 +71,7 @@ class MusicItem extends StatelessWidget {
                       height: 14,
                       child: Center(
                         child: Text(
-                          'Else',
+                          player.artist,
                           style: TextStyle(
                             color: Color(0xff93a8b3),
                             fontSize: 12,

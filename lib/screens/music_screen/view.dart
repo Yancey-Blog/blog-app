@@ -16,7 +16,8 @@ class _MusicViewState extends State<MusicView> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<MusicBloc>(context).add(BestAlbumRequested());
+    // BlocProvider.of<MusicBloc>(context).add(BestAlbumRequested());
+    BlocProvider.of<MusicBloc>(context).add(PlayerRequested());
   }
 
   @override
@@ -46,6 +47,11 @@ class _MusicViewState extends State<MusicView> {
           );
         }
 
+        if (state is PlayerLoadSuccess) {
+          final players = state.players;
+          _renderedWidget = PlayerView(players: players);
+        }
+
         if (state is MusicLoadFailure) {
           _renderedWidget = Center(
             child: Text(
@@ -57,8 +63,7 @@ class _MusicViewState extends State<MusicView> {
 
         return Scaffold(
           backgroundColor: Color.fromRGBO(239, 245, 249, 1),
-          // body: _renderedWidget,
-          body: Player(),
+          body: _renderedWidget,
         );
       },
     );

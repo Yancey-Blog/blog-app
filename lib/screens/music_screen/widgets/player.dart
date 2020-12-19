@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:blog_app/models/models.dart';
 import './music_item.dart';
 
-class Player extends StatelessWidget {
+class PlayerView extends StatelessWidget {
+  final List<Player> players;
+
+  const PlayerView({Key key, @required this.players}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -32,10 +37,10 @@ class Player extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
+                itemCount: players.length,
                 padding: const EdgeInsets.all(8),
                 itemBuilder: (context, index) {
-                  return MusicItem(index: index);
+                  return MusicItem(index: index, player: players[index]);
                 },
               ),
             ),

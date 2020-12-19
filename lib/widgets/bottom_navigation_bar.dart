@@ -30,17 +30,17 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: Icon(
-                CupertinoIcons.add,
+                CupertinoIcons.person_circle,
                 size: 24,
               ),
-              label: 'Battery',
+              label: 'Login',
             ),
             BottomNavigationBarItem(
               icon: Icon(
-                CupertinoIcons.delete,
+                CupertinoIcons.music_albums,
                 size: 24,
               ),
-              label: 'Device',
+              label: 'Music',
             ),
             BottomNavigationBarItem(
               icon: Icon(

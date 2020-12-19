@@ -12,8 +12,10 @@ class Player extends StatelessWidget {
         ),
         decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/music_screen/top-bg@3x.png'),
-              fit: BoxFit.contain),
+            image: AssetImage('assets/images/music_screen/top-bg@3x.png'),
+            fit: BoxFit.contain,
+            alignment: Alignment.topCenter,
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

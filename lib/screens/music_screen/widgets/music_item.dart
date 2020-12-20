@@ -21,10 +21,10 @@ class MusicItem extends StatefulWidget {
 }
 
 class _MusicItemState extends State<MusicItem> {
-  var _currentPlayedAudioId = '';
+  String _currentPlayedAudioId;
 
   AudioCache audioCache = AudioCache();
-  AudioPlayer audioPlayer = AudioPlayer();
+  AudioPlayer audioPlayer = AudioPlayer(playerId: '');
 
   String formatIndex(int index) {
     final serialNumber = index + 1;
@@ -45,21 +45,22 @@ class _MusicItemState extends State<MusicItem> {
     }
   }
 
-  void playHandler(String url, String id) async {
-    if (_currentPlayedAudioId != id) {
-      final result = await audioPlayer.play(url);
-      setState(() {
-        _currentPlayedAudioId = id;
-      });
-    }
+  void play(String url, String id) async {
+    print(id);
+    setState(() {
+      _currentPlayedAudioId = id;
+    });
+    print(_currentPlayedAudioId);
 
-    if (_currentPlayedAudioId == id) {
-      final result = await audioPlayer.stop();
+    final result = await audioPlayer.play(url);
+  }
 
-      setState(() {
-        _currentPlayedAudioId = '';
-      });
-    }
+  void pause() async {
+    setState(() {
+      _currentPlayedAudioId = '';
+    });
+
+    await audioPlayer.pause();
   }
 
   @override
@@ -70,87 +71,88 @@ class _MusicItemState extends State<MusicItem> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => playHandler(widget.players.musicFileUrl, widget.players.id),
-      child: Container(
-        padding:
-            const EdgeInsets.only(left: 24, right: 24, top: 12, bottom: 12),
-        child: Row(
-          children: [
-            Container(
-              width: 24,
-              height: 24,
-              child: Center(
-                child: Text(
-                  formatIndex(widget.index),
-                  style: TextStyle(
-                    color: Color(0xff93a8b3),
-                    fontSize: 12,
-                    letterSpacing: .26,
-                  ),
-                ),
-              ),
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(right: 12, left: 6),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(4),
-                      child: Image.network(
-                        widget.players.coverUrl,
-                        width: 40,
-                        height: 40,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 20,
-                        child: Center(
-                          child: Text(
-                            widget.players.title,
-                            style: TextStyle(
-                              color: Color(0xff3c425b),
-                              fontSize: 14,
-                              letterSpacing: .26,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        height: 14,
-                        child: Center(
-                          child: Text(
-                            widget.players.artist,
-                            style: TextStyle(
-                              color: Color(0xff93a8b3),
-                              fontSize: 12,
-                              letterSpacing: .26,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Center(
+    return Container(
+      padding: const EdgeInsets.only(
+        left: 24,
+        right: 24,
+        top: 12,
+        bottom: 12,
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 24,
+            height: 24,
+            child: Center(
               child: Text(
-                '···',
+                formatIndex(widget.index),
                 style: TextStyle(
                   color: Color(0xff93a8b3),
-                  fontSize: 24,
+                  fontSize: 12,
+                  letterSpacing: .26,
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 12, left: 6),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(4),
+                    child: Image.network(
+                      widget.players.coverUrl,
+                      width: 40,
+                      height: 40,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 20,
+                      child: Center(
+                        child: Text(
+                          widget.players.title,
+                          style: TextStyle(
+                            color: Color(0xff3c425b),
+                            fontSize: 14,
+                            letterSpacing: .26,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: 14,
+                      child: Center(
+                        child: Text(
+                          widget.players.artist,
+                          style: TextStyle(
+                            color: Color(0xff93a8b3),
+                            fontSize: 12,
+                            letterSpacing: .26,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Center(
+            child: Text(
+              '···',
+              style: TextStyle(
+                color: Color(0xff93a8b3),
+                fontSize: 24,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

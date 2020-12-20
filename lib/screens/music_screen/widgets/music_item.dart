@@ -1,12 +1,7 @@
-import 'dart:io';
-
-import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-
 import 'package:blog_app/models/models.dart';
 
-class MusicItem extends StatefulWidget {
+class MusicItem extends StatelessWidget {
   final int index;
   final Player players;
   MusicItem({
@@ -16,57 +11,10 @@ class MusicItem extends StatefulWidget {
   }) : super(
           key: key,
         );
-  @override
-  _MusicItemState createState() => _MusicItemState();
-}
-
-class _MusicItemState extends State<MusicItem> {
-  String _currentPlayedAudioId;
-
-  AudioCache audioCache = AudioCache();
-  AudioPlayer audioPlayer = AudioPlayer(playerId: '');
 
   String formatIndex(int index) {
     final serialNumber = index + 1;
     return serialNumber < 10 ? '0${serialNumber}' : serialNumber.toString();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-
-    // AudioPlayer.logEnabled = true;
-
-    if (Platform.isIOS) {
-      if (audioCache.fixedPlayer != null) {
-        audioCache.fixedPlayer.startHeadlessService();
-      }
-      audioPlayer.startHeadlessService();
-    }
-  }
-
-  void play(String url, String id) async {
-    print(id);
-    setState(() {
-      _currentPlayedAudioId = id;
-    });
-    print(_currentPlayedAudioId);
-
-    final result = await audioPlayer.play(url);
-  }
-
-  void pause() async {
-    setState(() {
-      _currentPlayedAudioId = '';
-    });
-
-    await audioPlayer.pause();
-  }
-
-  @override
-  void dispose() async {
-    super.dispose();
-    await audioPlayer.release();
   }
 
   @override
@@ -85,7 +33,7 @@ class _MusicItemState extends State<MusicItem> {
             height: 24,
             child: Center(
               child: Text(
-                formatIndex(widget.index),
+                formatIndex(index),
                 style: TextStyle(
                   color: Color(0xff93a8b3),
                   fontSize: 12,
@@ -102,7 +50,7 @@ class _MusicItemState extends State<MusicItem> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(4),
                     child: Image.network(
-                      widget.players.coverUrl,
+                      players.coverUrl,
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,
@@ -116,7 +64,7 @@ class _MusicItemState extends State<MusicItem> {
                       height: 20,
                       child: Center(
                         child: Text(
-                          widget.players.title,
+                          players.title,
                           style: TextStyle(
                             color: Color(0xff3c425b),
                             fontSize: 14,
@@ -129,7 +77,7 @@ class _MusicItemState extends State<MusicItem> {
                       height: 14,
                       child: Center(
                         child: Text(
-                          widget.players.artist,
+                          players.artist,
                           style: TextStyle(
                             color: Color(0xff93a8b3),
                             fontSize: 12,

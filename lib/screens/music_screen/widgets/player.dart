@@ -40,7 +40,7 @@ class PlayerView extends StatelessWidget {
                 itemCount: players.length,
                 padding: const EdgeInsets.all(8),
                 itemBuilder: (context, index) {
-                  return MusicItem(index: index, players: players[index]);
+                  return MusicItem(index: index, player: players[index]);
                 },
               ),
             ),

@@ -12,11 +12,18 @@ class MusicScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MusicBloc(
-        bestAlbumRepository: bestAlbumRepository,
-        playerRepository: playerRepository,
-      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<MusicBloc>(
+          create: (context) => MusicBloc(
+            bestAlbumRepository: bestAlbumRepository,
+            playerRepository: playerRepository,
+          ),
+        ),
+        BlocProvider<PlayerControllerBloc>(
+          create: (BuildContext context) => PlayerControllerBloc(),
+        ),
+      ],
       child: MusicView(),
     );
   }

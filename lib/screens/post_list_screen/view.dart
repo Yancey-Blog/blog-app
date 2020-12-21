@@ -24,16 +24,16 @@ class _PostListViewState extends State<PostListView> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<PostListBloc>(context).add(PostListRequested(page: 1));
+    BlocProvider.of<PostBloc>(context).add(PostListRequested(page: 1));
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PostListBloc, PostListState>(
+    return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
         Widget _renderedWidget = Container();
 
-        if (state is PostListLoadInProgress) {
+        if (state is PostLoadInProgress) {
           return Center(child: CircularProgressIndicator());
         }
 
@@ -55,7 +55,7 @@ class _PostListViewState extends State<PostListView> {
           );
         }
 
-        if (state is PostListLoadFailure) {
+        if (state is PostLoadFailure) {
           _renderedWidget = Center(
             child: Text(
               state.errorMessage,

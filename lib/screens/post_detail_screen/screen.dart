@@ -14,7 +14,7 @@ class PostDetailScreen extends StatelessWidget {
     final id = ModalRoute.of(context).settings.arguments as String;
 
     return BlocProvider(
-      create: (context) => PostDetailBloc(
+      create: (context) => PostBloc(
         postDetailRepository: postDetailRepository,
       ),
       child: PostDetailView(id: id),

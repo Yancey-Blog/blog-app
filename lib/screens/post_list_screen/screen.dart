@@ -12,7 +12,7 @@ class PostListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => PostListBloc(
+      create: (context) => PostBloc(
         postListRepository: postListRepository,
       ),
       child: PostListView(),

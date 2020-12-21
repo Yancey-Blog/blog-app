@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
               children: <Widget>[
                 LoginScreen(),
                 MusicScreen(),
-                DeviceInfoScreen()
+                PostListScreen()
               ],
             ),
           );

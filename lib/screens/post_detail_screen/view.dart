@@ -30,35 +30,34 @@ class _PostDetailViewState extends State<PostDetailView> {
   Widget build(BuildContext context) {
     return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
-        if (state is PostInitial) {
-          return Center(child: Text('Please Select a Location'));
-        }
+        Widget _renderedWidget;
 
         if (state is PostLoadInProgress) {
-          return Center(child: CircularProgressIndicator());
+          _renderedWidget = Center(
+            child: CircularProgressIndicator(),
+          );
         }
 
         if (state is PostDetailLoadSuccess) {
           final post = state.post;
 
-          return Scaffold(
-            appBar: AppBar(
-              title: Text(post.title),
-            ),
-            body: SafeArea(
-              child: CustomMarkdown(post.content),
-            ),
+          _renderedWidget = SafeArea(
+            child: CustomMarkdown(post.content),
           );
         }
 
         if (state is PostLoadFailure) {
-          return Center(
+          _renderedWidget = Center(
             child: Text(
               state.errorMessage,
               style: TextStyle(color: Colors.red),
             ),
           );
         }
+
+        return Scaffold(
+          body: _renderedWidget,
+        );
       },
     );
   }

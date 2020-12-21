@@ -24,7 +24,7 @@ class _MusicViewState extends State<MusicView> {
   Widget build(BuildContext context) {
     return BlocBuilder<MusicBloc, MusicState>(
       builder: (context, state) {
-        Widget _renderedWidget = Container();
+        Widget _renderedWidget;
 
         if (state is MusicLoadInProgress) {
           _renderedWidget = Center(child: CircularProgressIndicator());

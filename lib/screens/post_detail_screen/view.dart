@@ -21,20 +21,20 @@ class _PostDetailViewState extends State<PostDetailView> {
   void initState() {
     super.initState();
 
-    BlocProvider.of<PostDetailBloc>(context).add(
+    BlocProvider.of<PostBloc>(context).add(
       PostDetailRequested(id: id),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<PostDetailBloc, PostDetailState>(
+    return BlocBuilder<PostBloc, PostState>(
       builder: (context, state) {
-        if (state is PostDetailInitial) {
+        if (state is PostInitial) {
           return Center(child: Text('Please Select a Location'));
         }
 
-        if (state is PostDetailLoadInProgress) {
+        if (state is PostLoadInProgress) {
           return Center(child: CircularProgressIndicator());
         }
 
@@ -51,7 +51,7 @@ class _PostDetailViewState extends State<PostDetailView> {
           );
         }
 
-        if (state is PostDetailLoadFailure) {
+        if (state is PostLoadFailure) {
           return Center(
             child: Text(
               state.errorMessage,

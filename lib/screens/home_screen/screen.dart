@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blog_app/blocs/blocs.dart';
 
-import 'package:blog_app/widgets/bottom_navigation_bar.dart';
 import 'package:blog_app/screens/screens.dart';
+
+import './widgets/bottom_navigation_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -13,15 +14,27 @@ class HomeScreen extends StatelessWidget {
       child: BlocBuilder<BottomBarBloc, BottomBarState>(
         builder: (context, state) {
           return Scaffold(
-            bottomNavigationBar: BottomNavigationBarWidget(),
-            body: IndexedStack(
-              index: (state is CurrentIndexChanged) ? state.currentIndex : 0,
-              children: <Widget>[
-                LoginScreen(),
-                MusicScreen(),
-                PostListScreen()
-              ],
-            ),
+            // backgroundColor: Color.fromRGBO(29, 21, 54, 1),
+            // bottomNavigationBar: BottomNavigationBars(),
+            body: Stack(
+                alignment: AlignmentDirectional.center,
+                children: [
+                  IndexedStack(
+                    index:
+                        (state is CurrentIndexChanged) ? state.currentIndex : 0,
+                    children: <Widget>[
+                      LoginScreen(),
+                      MusicScreen(),
+                      PostListScreen(),
+                    ],
+                  ),
+                  Positioned(
+                    bottom: 36,
+                    child: BottomNavigationBarWidget(),
+                  ),
+                ],
+              ),
+          
           );
         },
       ),

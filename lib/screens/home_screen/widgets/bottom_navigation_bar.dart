@@ -15,6 +15,8 @@ class BottomNavigationBarWidget extends StatefulWidget {
 }
 
 class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
+  int _currentIndex = 0;
+
   final _list = [
     CupertinoIcons.person_circle,
     CupertinoIcons.music_albums,
@@ -22,19 +24,24 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   ];
 
   void _onItemTapped(int index) {
-    BlocProvider.of<BottomBarBloc>(context)
-        .add(BottomBarItemTapped(index: index));
+    BlocProvider.of<BottomBarBloc>(context).add(
+      BottomBarItemTapped(index: index),
+    );
+
+    setState(() {
+      _currentIndex = index;
+    });
   }
 
-  List<Widget> _renderIcon(BottomBarState state) {
+  List<Widget> _renderIconList(BottomBarState state) {
     return _list.map(
       (el) {
-        var index = _list.indexOf(el);
+        final index = _list.indexOf(el);
         return IconButton(
           icon: Icon(
             el,
             size: 24,
-            color: Colors.red,
+            color: _currentIndex == index ? Colors.red : Colors.black,
           ),
           onPressed: () => _onItemTapped(index),
         );
@@ -75,7 +82,7 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: _renderIcon(state),
+                      children: _renderIconList(state),
                     ),
                   ),
                 ),

@@ -17,24 +17,23 @@ class HomeScreen extends StatelessWidget {
             // backgroundColor: Color.fromRGBO(29, 21, 54, 1),
             // bottomNavigationBar: BottomNavigationBars(),
             body: Stack(
-                alignment: AlignmentDirectional.center,
-                children: [
-                  IndexedStack(
-                    index:
-                        (state is CurrentIndexChanged) ? state.currentIndex : 0,
-                    children: <Widget>[
-                      LoginScreen(),
-                      MusicScreen(),
-                      PostListScreen(),
-                    ],
-                  ),
-                  Positioned(
-                    bottom: 36,
-                    child: BottomNavigationBarWidget(),
-                  ),
-                ],
-              ),
-          
+              alignment: AlignmentDirectional.center,
+              children: [
+                IndexedStack(
+                  index:
+                      (state is CurrentIndexChanged) ? state.currentIndex : 0,
+                  children: <Widget>[
+                    MusicScreen(),
+                    LoginScreen(),
+                    PostListScreen(),
+                  ],
+                ),
+                Positioned(
+                  bottom: 36,
+                  child: BottomNavigationBarWidget(),
+                ),
+              ],
+            ),
           );
         },
       ),

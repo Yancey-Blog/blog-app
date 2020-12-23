@@ -9,6 +9,7 @@ class Routes {
     'post_detail_screen': (context) => PostDetailScreen(),
     'post_list_screen': (context) => PostListScreen(),
     'music_screen': (context) => MusicScreen(),
+    'player_detail_screen': (context) => PlayerDetailScreen(),
     'firebase_crashlytics_screen': (context) => FirebaseCrashlyticsScreen(),
     'firebase_analytics_screen': (context) => FirebaseAnalyticsScreen(),
     'firebase_messaging_screen': (context) => FirebaseMessagingScreen(),

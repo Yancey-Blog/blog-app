@@ -18,8 +18,8 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int _currentIndex = 0;
 
   final _list = [
-    CupertinoIcons.person_circle,
     CupertinoIcons.music_albums,
+    CupertinoIcons.person_circle,
     CupertinoIcons.home,
   ];
 
@@ -41,7 +41,9 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
           icon: Icon(
             el,
             size: 24,
-            color: _currentIndex == index ? Colors.red : Colors.black,
+            color: _currentIndex == index
+                ? Colors.white
+                : Color.fromRGBO(176, 173, 183, 1),
           ),
           onPressed: () => _onItemTapped(index),
         );

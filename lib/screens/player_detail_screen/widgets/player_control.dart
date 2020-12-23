@@ -7,24 +7,37 @@ class PlayerControl extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        IconButton(
-          onPressed: null,
-          icon: Icon(
+        Container(
+          padding: const EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black54),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
             CupertinoIcons.backward_end,
           ),
         ),
-        IconButton(
-          onPressed: null,
-          icon: Icon(
-            CupertinoIcons.play,
+        Container(
+          margin: const EdgeInsets.only(left: 24, right: 24),
+          padding: const EdgeInsets.all(12),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black54),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
+            Icons.play_arrow,
           ),
         ),
-        IconButton(
-          onPressed: null,
-          icon: Icon(
+        Container(
+          padding: const EdgeInsets.all(6),
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black54),
+            shape: BoxShape.circle,
+          ),
+          child: Icon(
             CupertinoIcons.forward_end,
           ),
-        )
+        ),
       ],
     );
   }

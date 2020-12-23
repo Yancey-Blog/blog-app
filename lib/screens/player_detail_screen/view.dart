@@ -12,12 +12,16 @@ class PlayerDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Poster(player: player),
-          Meta(player: player),
-          PlayerControl(),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            Poster(player: player),
+            Expanded(
+              child: Meta(player: player),
+            ),
+            PlayerControl(),
+          ],
+        ),
       ),
     );
   }

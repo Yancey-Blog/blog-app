@@ -11,7 +11,7 @@ class Meta extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.only(bottom: 12),
+          margin: const EdgeInsets.only(top: 24, bottom: 12),
           child: Text(
             player.title,
             style: TextStyle(

@@ -13,14 +13,17 @@ class PlayerDetailView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            Poster(player: player),
-            Expanded(
-              child: Meta(player: player),
-            ),
-            PlayerControl(),
-          ],
+        child: Container(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            children: [
+              Poster(player: player),
+              Expanded(
+                child: Meta(player: player),
+              ),
+              PlayerControl(),
+            ],
+          ),
         ),
       ),
     );

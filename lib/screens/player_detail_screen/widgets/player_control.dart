@@ -10,7 +10,7 @@ class PlayerControl extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black54),
+            border: Border.all(color: Colors.black, width: 2),
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -19,9 +19,9 @@ class PlayerControl extends StatelessWidget {
         ),
         Container(
           margin: const EdgeInsets.only(left: 24, right: 24),
-          padding: const EdgeInsets.all(12),
+          padding: const EdgeInsets.all(16),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black54),
+            border: Border.all(color: Colors.black, width: 2),
             shape: BoxShape.circle,
           ),
           child: Icon(
@@ -31,7 +31,7 @@ class PlayerControl extends StatelessWidget {
         Container(
           padding: const EdgeInsets.all(6),
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.black54),
+            border: Border.all(color: Colors.black, width: 2),
             shape: BoxShape.circle,
           ),
           child: Icon(

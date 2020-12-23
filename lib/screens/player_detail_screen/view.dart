@@ -16,7 +16,7 @@ class PlayerDetailView extends StatelessWidget {
         children: [
           Poster(player: player),
           Meta(player: player),
-          PlayerControl()
+          PlayerControl(),
         ],
       ),
     );

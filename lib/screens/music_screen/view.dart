@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:blog_app/blocs/blocs.dart';
 
-import 'widgets/player.dart';
+import 'widgets/player_list.dart';
 
 class MusicView extends StatefulWidget {
   MusicView({Key key}) : super(key: key);
@@ -16,7 +16,6 @@ class _MusicViewState extends State<MusicView> {
   void initState() {
     super.initState();
 
-    // BlocProvider.of<MusicBloc>(context).add(BestAlbumRequested());
     BlocProvider.of<MusicBloc>(context).add(PlayerRequested());
   }
 
@@ -30,26 +29,9 @@ class _MusicViewState extends State<MusicView> {
           _renderedWidget = Center(child: CircularProgressIndicator());
         }
 
-        if (state is BestAlbumLoadSuccess) {
-          final bestAlbums = state.bestAlbums;
-
-          _renderedWidget = ListView.builder(
-            itemCount: bestAlbums.length,
-            padding: const EdgeInsets.all(8),
-            itemBuilder: (context, index) {
-              final bestAlbum = bestAlbums[index];
-
-              return ListTile(
-                title: Text(bestAlbum.title),
-                subtitle: Text(bestAlbum.artist),
-              );
-            },
-          );
-        }
-
         if (state is PlayerLoadSuccess) {
           final players = state.players;
-          _renderedWidget = PlayerView(players: players);
+          _renderedWidget = PlayerList(players: players);
         }
 
         if (state is MusicLoadFailure) {

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:blog_app/models/models.dart';
-import './music_item.dart';
+import 'player_item.dart';
 
-class PlayerView extends StatelessWidget {
+class PlayerList extends StatelessWidget {
   final List<Player> players;
 
-  const PlayerView({Key key, @required this.players}) : super(key: key);
+  const PlayerList({Key key, @required this.players}) : super(key: key);
+
+  void onTapped(BuildContext context, Player player) {
+    Navigator.pushNamed(context, 'player_detail_screen', arguments: player);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +44,11 @@ class PlayerView extends StatelessWidget {
               itemCount: players.length,
               padding: const EdgeInsets.all(8),
               itemBuilder: (context, index) {
-                return MusicItem(index: index, player: players[index]);
+                final player = players[index];
+                return GestureDetector(
+                  onTap: () => onTapped(context, player),
+                  child: PlayerItem(index: index, player: player),
+                );
               },
             ),
           ),

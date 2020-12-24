@@ -1,46 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:audioplayers/audioplayers.dart';
 
 import 'package:blog_app/models/models.dart';
 import 'package:blog_app/blocs/blocs.dart';
 
-enum PlayerStatus { Playing, Paused, Stopped }
-
-class SwitchPlayControllor extends StatefulWidget {
+class SwitchPlayControllor extends StatelessWidget {
   final Player player;
 
   SwitchPlayControllor({
     Key key,
     @required this.player,
   }) : super(key: key);
-
-  @override
-  _SwitchPlayControllorState createState() => _SwitchPlayControllorState();
-}
-
-class _SwitchPlayControllorState extends State<SwitchPlayControllor> {
-  PlayerStatus _playerStatus = PlayerStatus.Stopped;
-
-  AudioPlayer audioPlayer = AudioPlayer(playerId: '');
-
-  void play(Player player) async {
-    await audioPlayer.play(player.musicFileUrl);
-
-    setState(() {
-      _playerStatus = PlayerStatus.Playing;
-    });
-  }
-
-  void pause() async {
-    await audioPlayer.pause();
-
-    setState(() {
-      _playerStatus = PlayerStatus.Paused;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,21 +43,17 @@ class _SwitchPlayControllorState extends State<SwitchPlayControllor> {
                   border: Border.all(color: Colors.black),
                   shape: BoxShape.circle,
                 ),
-                child: _playerStatus == PlayerStatus.Paused
-                    ? IconButton(
-                        icon: Icon(
-                          Icons.pause,
-                          color: Colors.black,
-                        ),
-                        onPressed: () => play(widget.player),
-                      )
-                    : IconButton(
-                        icon: Icon(
-                          Icons.play_arrow,
-                          color: Colors.black,
-                        ),
-                        onPressed: pause,
-                      ),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.play_arrow,
+                    color: Colors.black,
+                  ),
+                  onPressed: () => {
+                    BlocProvider.of<PlayerControllerBloc>(context).add(
+                      AudioPlayed(audio: player),
+                    )
+                  },
+                ),
               ),
               Container(
                 padding: const EdgeInsets.all(4),

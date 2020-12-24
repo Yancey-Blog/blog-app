@@ -14,9 +14,9 @@ class MusicBloc extends Bloc<MusicEvent, MusicState> {
   final PlayerRepository playerRepository;
 
   MusicBloc({
-    @required this.bestAlbumRepository,
-    @required this.playerRepository,
-  })  : assert(bestAlbumRepository != null && playerRepository != null),
+    this.bestAlbumRepository,
+    this.playerRepository,
+  })  : assert(bestAlbumRepository != null || playerRepository != null),
         super(MusicInitial());
 
   @override

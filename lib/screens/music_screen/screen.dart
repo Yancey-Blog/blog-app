@@ -5,25 +5,12 @@ import 'package:blog_app/blocs/blocs.dart';
 import 'view.dart';
 
 class MusicScreen extends StatelessWidget {
-  final bestAlbumRepository = BestAlbumRepository();
   final playerRepository = PlayerRepository();
-
-  MusicScreen({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<MusicBloc>(
-          create: (context) => MusicBloc(
-            bestAlbumRepository: bestAlbumRepository,
-            playerRepository: playerRepository,
-          ),
-        ),
-        BlocProvider<PlayerControllerBloc>(
-          create: (BuildContext context) => PlayerControllerBloc(),
-        ),
-      ],
+    return BlocProvider(
+      create: (context) => MusicBloc(playerRepository: playerRepository),
       child: MusicView(),
     );
   }

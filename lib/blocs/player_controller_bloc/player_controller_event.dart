@@ -7,11 +7,15 @@ abstract class PlayerControllerEvent extends Equatable {
   List<Object> get props => [];
 }
 
-
-class MusicItemTapped extends PlayerControllerEvent {
-  final Player music;
-  const MusicItemTapped({@required this.music}) : assert(music != null);
+class AudioPlayed extends PlayerControllerEvent {
+  final Player audio;
+  const AudioPlayed({@required this.audio}) : assert(audio != null);
 
   @override
-  List<Object> get props => [music];
+  List<Object> get props => [audio];
+}
+
+class AudioPaused extends PlayerControllerEvent {
+  @override
+  List<Object> get props => [];
 }

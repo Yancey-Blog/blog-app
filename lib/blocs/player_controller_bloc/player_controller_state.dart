@@ -9,13 +9,23 @@ abstract class PlayerControllerState extends Equatable {
 
 class PlayerControllerInitial extends PlayerControllerState {}
 
-class CurrentPlayedMusicChanged extends PlayerControllerState {
-  final Player currentPlayedMusic;
+class AudioLoadInProgress extends PlayerControllerState {}
 
-  const CurrentPlayedMusicChanged({
-    @required this.currentPlayedMusic,
-  }) : assert(currentPlayedMusic != null);
+class AudioPlaySuccess extends PlayerControllerState {
+  @override
+  List<Object> get props => [];
+}
+
+class AudioPauseSuccess extends PlayerControllerState {
+  @override
+  List<Object> get props => [];
+}
+
+class AudioLoadFailure extends PlayerControllerState {
+  final String errorMessage;
+
+  const AudioLoadFailure(this.errorMessage);
 
   @override
-  List<Object> get props => [currentPlayedMusic];
+  List<Object> get props => [errorMessage];
 }

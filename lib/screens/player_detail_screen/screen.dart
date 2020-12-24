@@ -10,8 +10,6 @@ import 'view.dart';
 class PlayerDetailScreen extends StatelessWidget {
   final playerRepository = PlayerRepository();
 
-  PlayerDetailScreen({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     final player = ModalRoute.of(context).settings.arguments as Player;

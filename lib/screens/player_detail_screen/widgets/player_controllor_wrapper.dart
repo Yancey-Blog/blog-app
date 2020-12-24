@@ -16,7 +16,7 @@ class PlayerControllorWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        PlayerControllor(player: player),
+        PlayerControllor(audio: player),
         VolumeControllor(),
       ],
     );

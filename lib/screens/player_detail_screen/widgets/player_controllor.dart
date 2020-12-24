@@ -1,15 +1,57 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:just_audio/just_audio.dart';
+import 'package:audio_session/audio_session.dart';
 
 import 'package:blog_app/models/models.dart';
 
-class PlayerControllor extends StatelessWidget {
-  final Player player;
+enum PlayStatus { Play, Pause, Stop }
+
+class PlayerControllor extends StatefulWidget {
+  final Player audio;
 
   PlayerControllor({
     Key key,
-    @required this.player,
+    @required this.audio,
   }) : super(key: key);
+
+  @override
+  _PlayerControllorState createState() => _PlayerControllorState();
+}
+
+class _PlayerControllorState extends State<PlayerControllor> {
+  AudioPlayer _player;
+  PlayStatus _playStatus = PlayStatus.Stop;
+
+  @override
+  void initState() {
+    super.initState();
+    _player = AudioPlayer();
+  }
+
+  @override
+  void dispose() {
+    _player.dispose();
+    super.dispose();
+  }
+
+  void play() async {
+    setState(() {
+      _playStatus = PlayStatus.Play;
+    });
+
+    var duration = await _player.setUrl(widget.audio.musicFileUrl);
+    print(duration);
+    await _player.play();
+  }
+
+  void pause() async {
+    setState(() {
+      _playStatus = PlayStatus.Pause;
+    });
+
+    await _player.pause();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -41,10 +83,12 @@ class PlayerControllor extends StatelessWidget {
               ),
               child: IconButton(
                 icon: Icon(
-                  Icons.play_arrow,
+                  _playStatus == PlayStatus.Play
+                      ? Icons.pause
+                      : Icons.play_arrow,
                   color: Colors.black,
                 ),
-                onPressed: () => {},
+                onPressed: _playStatus == PlayStatus.Play ? pause : play,
               ),
             ),
             Container(

@@ -5,7 +5,7 @@ import 'package:blog_app/models/models.dart';
 
 import 'widgets/poster.dart';
 import 'widgets/meta.dart';
-import 'widgets/player_controllor.dart';
+import 'widgets/player_controllor_wrapper.dart';
 
 class PlayerDetailView extends StatelessWidget {
   final Player player;
@@ -36,7 +36,7 @@ class PlayerDetailView extends StatelessWidget {
                     Expanded(
                       child: Meta(player: player),
                     ),
-                    PlayerControllor(player: player),
+                    PlayerControllorWrapper(player: player),
                   ],
                 ),
               ),

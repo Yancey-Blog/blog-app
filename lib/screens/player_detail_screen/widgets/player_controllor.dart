@@ -3,20 +3,67 @@ import 'package:flutter/cupertino.dart';
 
 import 'package:blog_app/models/models.dart';
 
-import 'switch_play_controllor.dart';
-import 'volume_controllor.dart';
-
 class PlayerControllor extends StatelessWidget {
   final Player player;
 
-  const PlayerControllor({Key key, @required this.player}) : super(key: key);
+  PlayerControllor({
+    Key key,
+    @required this.player,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        SwitchPlayControllor(player: player),
-        VolumeControllor(),
+        Icon(
+          CupertinoIcons.arrow_2_circlepath,
+        ),
+        Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                CupertinoIcons.backward_end,
+                color: Colors.black,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 24, right: 24),
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                shape: BoxShape.circle,
+              ),
+              child: IconButton(
+                icon: Icon(
+                  Icons.play_arrow,
+                  color: Colors.black,
+                ),
+                onPressed: () => {},
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                CupertinoIcons.forward_end,
+                color: Colors.black,
+              ),
+            ),
+          ],
+        ),
+        Icon(
+          CupertinoIcons.arrow_swap,
+          color: Colors.black,
+        ),
       ],
     );
   }

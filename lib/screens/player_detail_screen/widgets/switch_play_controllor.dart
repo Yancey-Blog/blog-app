@@ -9,19 +9,19 @@ import 'package:blog_app/blocs/blocs.dart';
 
 enum PlayerStatus { Playing, Paused, Stopped }
 
-class PlayControl extends StatefulWidget {
+class SwitchPlayControllor extends StatefulWidget {
   final Player player;
 
-  PlayControl({
+  SwitchPlayControllor({
     Key key,
     @required this.player,
   }) : super(key: key);
 
   @override
-  _PlayControlState createState() => _PlayControlState();
+  _SwitchPlayControllorState createState() => _SwitchPlayControllorState();
 }
 
-class _PlayControlState extends State<PlayControl> {
+class _SwitchPlayControllorState extends State<SwitchPlayControllor> {
   PlayerStatus _playerStatus = PlayerStatus.Stopped;
 
   AudioPlayer audioPlayer = AudioPlayer(playerId: '');

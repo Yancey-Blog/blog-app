@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class VolumeControl extends StatefulWidget {
-  VolumeControl({Key key}) : super(key: key);
+class VolumeControllor extends StatefulWidget {
+  VolumeControllor({Key key}) : super(key: key);
 
   @override
-  _VolumeControlState createState() => _VolumeControlState();
+  _VolumeControllorState createState() => _VolumeControllorState();
 }
 
-class _VolumeControlState extends State<VolumeControl> {
+class _VolumeControllorState extends State<VolumeControllor> {
   double _currentSliderValue = 0;
 
   @override

@@ -22,11 +22,14 @@ class PlayerControllor extends StatefulWidget {
 class _PlayerControllorState extends State<PlayerControllor> {
   AudioPlayer _player;
   PlayStatus _playStatus = PlayStatus.Stop;
+  Duration _duration;
 
   @override
   void initState() {
     super.initState();
     _player = AudioPlayer();
+
+    print(volume);
   }
 
   @override
@@ -35,14 +38,21 @@ class _PlayerControllorState extends State<PlayerControllor> {
     super.dispose();
   }
 
+  double get volume => _player.volume;
+
   void play() async {
     setState(() {
       _playStatus = PlayStatus.Play;
     });
 
     var duration = await _player.setUrl(widget.audio.musicFileUrl);
-    print(duration);
+
+    setState(() {
+      _duration = duration;
+    });
+
     await _player.play();
+    await getStream();
   }
 
   void pause() async {
@@ -51,6 +61,13 @@ class _PlayerControllorState extends State<PlayerControllor> {
     });
 
     await _player.pause();
+  }
+
+  Stream<Duration> getStream() async* {
+    final buffer = _player.bufferedPositionStream;
+
+    print(buffer);
+    yield* buffer;
   }
 
   @override

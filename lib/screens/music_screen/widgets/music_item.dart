@@ -1,4 +1,3 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,46 +21,13 @@ class MusicItem extends StatefulWidget {
 }
 
 class _MusicItemState extends State<MusicItem> {
-  AudioPlayer audioPlayer = AudioPlayer(playerId: '');
-
   String formatIndex(int index) {
     final serialNumber = index + 1;
     return serialNumber < 10 ? '0${serialNumber}' : serialNumber.toString();
   }
 
-  void play(BuildContext context, Player music) async {
-    BlocProvider.of<PlayerControllerBloc>(context).add(
-      MusicItemTapped(music: music),
-    );
-
-    await audioPlayer.play(music.musicFileUrl);
-  }
-
-  void pause() async {
-    await audioPlayer.pause();
-  }
-
   void onTapped(BuildContext context, Player player) {
     Navigator.pushNamed(context, 'player_detail_screen', arguments: player);
-  }
-
-  Widget _playerState(
-      BuildContext context, PlayerControllerState state, String id) {
-    Widget _renderedWidget = IconButton(
-      icon: Icon(Icons.play_arrow),
-      onPressed: () => play(context, widget.player),
-    );
-
-    if (state is CurrentPlayedMusicChanged) {
-      if (state.currentPlayedMusic.id == id) {
-        _renderedWidget = IconButton(
-          icon: Icon(Icons.pause),
-          onPressed: pause,
-        );
-      }
-    }
-
-    return _renderedWidget;
   }
 
   @override
@@ -151,7 +117,6 @@ class _MusicItemState extends State<MusicItem> {
                     ),
                   ),
                 ),
-                _playerState(context, state, widget.player.id),
               ],
             ),
           ),

@@ -62,6 +62,7 @@ class _SwitchPlayControllorState extends State<SwitchPlayControllor> {
                 ),
                 child: Icon(
                   CupertinoIcons.backward_end,
+                  color: Colors.black,
                 ),
               ),
               Container(
@@ -73,11 +74,17 @@ class _SwitchPlayControllorState extends State<SwitchPlayControllor> {
                 ),
                 child: _playerStatus == PlayerStatus.Paused
                     ? IconButton(
-                        icon: Icon(Icons.pause),
+                        icon: Icon(
+                          Icons.pause,
+                          color: Colors.black,
+                        ),
                         onPressed: () => play(widget.player),
                       )
                     : IconButton(
-                        icon: Icon(Icons.play_arrow),
+                        icon: Icon(
+                          Icons.play_arrow,
+                          color: Colors.black,
+                        ),
                         onPressed: pause,
                       ),
               ),
@@ -88,13 +95,15 @@ class _SwitchPlayControllorState extends State<SwitchPlayControllor> {
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
-                  CupertinoIcons.arrow_swap,
+                  CupertinoIcons.forward_end,
+                  color: Colors.black,
                 ),
               ),
             ],
           ),
           Icon(
-            CupertinoIcons.backward_end,
+            CupertinoIcons.arrow_swap,
+            color: Colors.black,
           ),
         ],
       );

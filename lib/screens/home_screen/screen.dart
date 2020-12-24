@@ -4,7 +4,7 @@ import 'package:blog_app/blocs/blocs.dart';
 
 import 'package:blog_app/screens/screens.dart';
 
-import './widgets/bottom_navigation_bar.dart';
+import 'widgets/bottom_navigation_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   @override

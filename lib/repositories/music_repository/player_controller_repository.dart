@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 
 class PlayerControllerRepository {
-  AudioPlayer audioPlayer = AudioPlayer(playerId: '');
+  AudioPlayer audioPlayer = AudioPlayer();
 
   Future<void> play(String musicFileUrl) async {
     final res = await audioPlayer.play(musicFileUrl);

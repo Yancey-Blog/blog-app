@@ -13,6 +13,55 @@ class SwitchPlayControllor extends StatelessWidget {
     @required this.player,
   }) : super(key: key);
 
+  Widget _renderedPlayerStatus(
+      BuildContext context, PlayerControllerState state) {
+    Widget _renderedWidget = IconButton(
+      icon: Icon(
+        Icons.play_arrow,
+        color: Colors.black,
+      ),
+      onPressed: () => {
+        BlocProvider.of<PlayerControllerBloc>(context).add(
+          AudioPlayed(audio: player),
+        ),
+      },
+    );
+
+    if (state is AudioLoadInProgress) {
+      _renderedWidget = CircularProgressIndicator();
+    }
+
+    if (state is AudioPauseSuccess) {
+      _renderedWidget = IconButton(
+        icon: Icon(
+          Icons.pause,
+          color: Colors.black,
+        ),
+        onPressed: () => {
+          BlocProvider.of<PlayerControllerBloc>(context).add(
+            AudioPaused(),
+          )
+        },
+      );
+    }
+
+    if (state is AudioPauseSuccess) {
+      _renderedWidget = IconButton(
+        icon: Icon(
+          Icons.pause,
+          color: Colors.black,
+        ),
+        onPressed: () => {
+          BlocProvider.of<PlayerControllerBloc>(context).add(
+            AudioPaused(),
+          )
+        },
+      );
+    }
+
+    return _renderedWidget;
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<PlayerControllerBloc, PlayerControllerState>(
@@ -43,17 +92,7 @@ class SwitchPlayControllor extends StatelessWidget {
                   border: Border.all(color: Colors.black),
                   shape: BoxShape.circle,
                 ),
-                child: IconButton(
-                  icon: Icon(
-                    Icons.play_arrow,
-                    color: Colors.black,
-                  ),
-                  onPressed: () => {
-                    BlocProvider.of<PlayerControllerBloc>(context).add(
-                      AudioPlayed(audio: player),
-                    )
-                  },
-                ),
+                child: _renderedPlayerStatus(context, state),
               ),
               Container(
                 padding: const EdgeInsets.all(4),

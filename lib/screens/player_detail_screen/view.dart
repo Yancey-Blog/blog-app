@@ -8,8 +8,8 @@ import 'widgets/meta.dart';
 import 'widgets/player_controllor.dart';
 
 class PlayerDetailView extends StatelessWidget {
-  final Player player;
-  PlayerDetailView({Key key, @required this.player}) : super(key: key);
+  final List<Player> audioFiles;
+  PlayerDetailView({Key key, @required this.audioFiles}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class PlayerDetailView extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: NetworkImage(player.coverUrl),
+            image: NetworkImage(audioFiles[0].coverUrl),
             fit: BoxFit.cover,
           ),
         ),
@@ -29,14 +29,14 @@ class PlayerDetailView extends StatelessWidget {
             color: Colors.white.withOpacity(0.5),
             child: SafeArea(
               child: Container(
-                padding: const EdgeInsets.all(36),
+                padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
-                    Poster(player: player),
+                    Poster(player: audioFiles[0]),
                     Expanded(
-                      child: Meta(player: player),
+                      child: Meta(player: audioFiles[0]),
                     ),
-                    PlayerControllor(audio: player),
+                    PlayerControllor(audioFiles: audioFiles),
                   ],
                 ),
               ),

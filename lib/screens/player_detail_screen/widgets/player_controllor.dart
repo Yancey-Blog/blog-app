@@ -10,11 +10,11 @@ import './volume_controllor.dart';
 import './control_buttons.dart';
 
 class PlayerControllor extends StatefulWidget {
-  final Player audio;
+  final List<Player> audioFiles;
 
   PlayerControllor({
     Key key,
-    @required this.audio,
+    @required this.audioFiles,
   }) : super(key: key);
 
   @override
@@ -24,10 +24,25 @@ class PlayerControllor extends StatefulWidget {
 class _PlayerControllorState extends State<PlayerControllor> {
   AudioPlayer _player;
 
+  ConcatenatingAudioSource _playlist;
+
   @override
   void initState() {
     super.initState();
+
+    _playlist = ConcatenatingAudioSource(
+      children: widget.audioFiles
+          .map(
+            (el) => AudioSource.uri(
+              Uri.parse(el.musicFileUrl),
+              tag: el,
+            ),
+          )
+          .toList(),
+    );
+
     _player = AudioPlayer();
+
     _init();
   }
 
@@ -35,9 +50,24 @@ class _PlayerControllorState extends State<PlayerControllor> {
     final session = await AudioSession.instance;
     await session.configure(AudioSessionConfiguration.speech());
     try {
-      await _player.setUrl(widget.audio.musicFileUrl);
+      await _player.setAudioSource(_playlist);
+    } on PlayerException catch (e) {
+      // iOS/macOS: maps to NSError.code
+      // Android: maps to ExoPlayerException.type
+      // Web: maps to MediaError.code
+      print('Error code: ${e.code}');
+      // iOS/macOS: maps to NSError.localizedDescription
+      // Android: maps to ExoPlaybackException.getMessage()
+      // Web: a generic message
+      print('Essos message: ${e.message}');
+    } on PlayerInterruptedException catch (e) {
+      // This call was interrupted since another audio source was loaded or the
+      // player was stopped or disposed before this audio source could complete
+      // loading.
+      print('Connection aborted: ${e.message}');
     } catch (e) {
-      print('An error occured $e');
+      // Fallback for all errors
+      print(e);
     }
   }
 

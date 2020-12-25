@@ -12,13 +12,13 @@ class PlayerDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final player = ModalRoute.of(context).settings.arguments as Player;
+    final audioFiles = ModalRoute.of(context).settings.arguments as List<Player>;
 
     return BlocProvider(
       create: (context) => PlayerControllerBloc(),
       child: BlocBuilder<PlayerControllerBloc, PlayerControllerState>(
         builder: (context, state) {
-          return PlayerDetailView(player: player);
+          return PlayerDetailView(audioFiles: audioFiles);
         },
       ),
     );

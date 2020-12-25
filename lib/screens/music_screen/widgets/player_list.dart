@@ -7,8 +7,8 @@ class PlayerList extends StatelessWidget {
 
   const PlayerList({Key key, @required this.players}) : super(key: key);
 
-  void onTapped(BuildContext context, Player player) {
-    Navigator.pushNamed(context, 'player_detail_screen', arguments: player);
+  void onTapped(BuildContext context, List<Player> audioFiles) {
+    Navigator.pushNamed(context, 'player_detail_screen', arguments: audioFiles);
   }
 
   @override
@@ -46,7 +46,7 @@ class PlayerList extends StatelessWidget {
               itemBuilder: (context, index) {
                 final player = players[index];
                 return GestureDetector(
-                  onTap: () => onTapped(context, player),
+                  onTap: () => onTapped(context, players),
                   child: PlayerItem(index: index, player: player),
                 );
               },

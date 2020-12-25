@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
@@ -52,7 +54,6 @@ class _PlayerControllorState extends State<PlayerControllor> {
     });
 
     await _player.play();
-    await getStream();
   }
 
   void pause() async {
@@ -63,69 +64,149 @@ class _PlayerControllorState extends State<PlayerControllor> {
     await _player.pause();
   }
 
-  Stream<Duration> getStream() async* {
-    final buffer = _player.bufferedPositionStream;
-
-    print(buffer);
-    yield* buffer;
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        StreamBuilder<Duration>(
+          stream: _player.durationStream,
+          builder: (context, snapshot) {
+            final duration = snapshot.data ?? Duration.zero;
+            return StreamBuilder<Duration>(
+              stream: _player.positionStream,
+              builder: (context, snapshot) {
+                var position = snapshot.data ?? Duration.zero;
+                if (position > duration) {
+                  position = duration;
+                }
+                return SeekBar(
+                  duration: duration,
+                  position: position,
+                  onChangeEnd: (newPosition) {
+                    _player.seek(newPosition);
+                  },
+                );
+              },
+            );
+          },
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Icon(
+              CupertinoIcons.arrow_2_circlepath,
+            ),
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    CupertinoIcons.backward_end,
+                    color: Colors.black,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 24, right: 24),
+                  padding: const EdgeInsets.all(8),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    shape: BoxShape.circle,
+                  ),
+                  child: IconButton(
+                    icon: Icon(
+                      _playStatus == PlayStatus.Play
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                      color: Colors.black,
+                    ),
+                    onPressed: _playStatus == PlayStatus.Play ? pause : play,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(4),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    CupertinoIcons.forward_end,
+                    color: Colors.black,
+                  ),
+                ),
+              ],
+            ),
+            Icon(
+              CupertinoIcons.arrow_swap,
+              color: Colors.black,
+            ),
+          ],
+        )
+      ],
+    );
   }
+}
+
+class SeekBar extends StatefulWidget {
+  final Duration duration;
+  final Duration position;
+  final ValueChanged<Duration> onChanged;
+  final ValueChanged<Duration> onChangeEnd;
+
+  SeekBar({
+    @required this.duration,
+    @required this.position,
+    this.onChanged,
+    this.onChangeEnd,
+  });
+
+  @override
+  _SeekBarState createState() => _SeekBarState();
+}
+
+class _SeekBarState extends State<SeekBar> {
+  double _dragValue;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Stack(
       children: [
-        Icon(
-          CupertinoIcons.arrow_2_circlepath,
+        Slider(
+          min: 0.0,
+          max: widget.duration.inMilliseconds.toDouble(),
+          value: min(_dragValue ?? widget.position.inMilliseconds.toDouble(),
+              widget.duration.inMilliseconds.toDouble()),
+          onChanged: (value) {
+            setState(() {
+              _dragValue = value;
+            });
+            if (widget.onChanged != null) {
+              widget.onChanged(Duration(milliseconds: value.round()));
+            }
+          },
+          onChangeEnd: (value) {
+            if (widget.onChangeEnd != null) {
+              widget.onChangeEnd(Duration(milliseconds: value.round()));
+            }
+            _dragValue = null;
+          },
         ),
-        Row(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                CupertinoIcons.backward_end,
-                color: Colors.black,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(left: 24, right: 24),
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                shape: BoxShape.circle,
-              ),
-              child: IconButton(
-                icon: Icon(
-                  _playStatus == PlayStatus.Play
-                      ? Icons.pause
-                      : Icons.play_arrow,
-                  color: Colors.black,
-                ),
-                onPressed: _playStatus == PlayStatus.Play ? pause : play,
-              ),
-            ),
-            Container(
-              padding: const EdgeInsets.all(4),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black),
-                shape: BoxShape.circle,
-              ),
-              child: Icon(
-                CupertinoIcons.forward_end,
-                color: Colors.black,
-              ),
-            ),
-          ],
-        ),
-        Icon(
-          CupertinoIcons.arrow_swap,
-          color: Colors.black,
+        Positioned(
+          right: 16.0,
+          bottom: 0.0,
+          child: Text(
+              RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
+                      .firstMatch("$_remaining")
+                      ?.group(1) ??
+                  '$_remaining',
+              style: Theme.of(context).textTheme.caption),
         ),
       ],
     );
   }
+
+  Duration get _remaining => widget.duration - widget.position;
 }

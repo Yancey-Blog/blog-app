@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
@@ -8,6 +10,8 @@ import 'package:blog_app/models/models.dart';
 import './seek_bar.dart';
 import './volume_controllor.dart';
 import './control_buttons.dart';
+import './poster.dart';
+import './meta.dart';
 
 class PlayerControllor extends StatefulWidget {
   final List<Player> audioFiles;
@@ -79,33 +83,74 @@ class _PlayerControllorState extends State<PlayerControllor> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        StreamBuilder<Duration>(
-          stream: _player.durationStream,
-          builder: (context, snapshot) {
-            final duration = snapshot.data ?? Duration.zero;
-            return StreamBuilder<Duration>(
-              stream: _player.positionStream,
-              builder: (context, snapshot) {
-                var position = snapshot.data ?? Duration.zero;
-                if (position > duration) {
-                  position = duration;
-                }
-                return SeekBar(
-                  duration: duration,
-                  position: position,
-                  onChangeEnd: (newPosition) {
-                    _player.seek(newPosition);
-                  },
-                );
-              },
-            );
-          },
-        ),
-        ControlButtons(player: _player),
-        VolumeControllor(),
-      ],
+    return StreamBuilder<SequenceState>(
+      stream: _player.sequenceStateStream,
+      builder: (context, snapshot) {
+        final state = snapshot.data;
+        if (state?.sequence?.isEmpty ?? true) return SizedBox();
+        final metadata = state.currentSource.tag as Player;
+
+        return Scaffold(
+          body: Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(metadata.coverUrl),
+                fit: BoxFit.cover,
+              ),
+            ),
+            child: BackdropFilter(
+              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              child: Container(
+                color: Colors.white.withOpacity(0.5),
+                child: SafeArea(
+                  child: Container(
+                    padding: const EdgeInsets.all(24),
+                    child: Column(
+                      children: [
+                        Poster(cover: metadata.coverUrl),
+                        Expanded(
+                          child: Meta(audio: metadata),
+                        ),
+                        Column(
+                          children: [
+                            StreamBuilder<Duration>(
+                              stream: _player.durationStream,
+                              builder: (context, snapshot) {
+                                final duration = snapshot.data ?? Duration.zero;
+                                return StreamBuilder<Duration>(
+                                  stream: _player.positionStream,
+                                  builder: (context, snapshot) {
+                                    var position =
+                                        snapshot.data ?? Duration.zero;
+                                    if (position > duration) {
+                                      position = duration;
+                                    }
+                                    return SeekBar(
+                                      duration: duration,
+                                      position: position,
+                                      onChangeEnd: (newPosition) {
+                                        _player.seek(newPosition);
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            ),
+                            ControlButtons(player: _player),
+                            VolumeControllor(),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:blog_app/models/models.dart';
 
 class Meta extends StatelessWidget {
-  final Player player;
+  final Player audio;
 
-  const Meta({Key key, this.player}) : super(key: key);
+  const Meta({Key key, this.audio}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class Meta extends StatelessWidget {
         Container(
           margin: const EdgeInsets.only(top: 24, bottom: 12),
           child: Text(
-            player.title,
+            audio.title,
             style: TextStyle(
               fontSize: 20,
             ),
@@ -21,7 +21,7 @@ class Meta extends StatelessWidget {
         ),
         Container(
           child: Text(
-            player.artist,
+            audio.artist,
             style: TextStyle(
               fontSize: 16,
             ),

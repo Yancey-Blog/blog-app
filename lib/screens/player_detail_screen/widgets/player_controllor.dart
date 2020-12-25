@@ -9,8 +9,6 @@ import './seek_bar.dart';
 import './volume_controllor.dart';
 import './control_buttons.dart';
 
-enum PlayStatus { Play, Pause, Stop }
-
 class PlayerControllor extends StatefulWidget {
   final Player audio;
 
@@ -25,45 +23,28 @@ class PlayerControllor extends StatefulWidget {
 
 class _PlayerControllorState extends State<PlayerControllor> {
   AudioPlayer _player;
-  PlayStatus _playStatus = PlayStatus.Stop;
-  Duration _duration;
 
   @override
   void initState() {
     super.initState();
     _player = AudioPlayer();
+    _init();
+  }
 
-    print(volume);
+  void _init() async {
+    final session = await AudioSession.instance;
+    await session.configure(AudioSessionConfiguration.speech());
+    try {
+      await _player.setUrl(widget.audio.musicFileUrl);
+    } catch (e) {
+      print('An error occured $e');
+    }
   }
 
   @override
   void dispose() {
     _player.dispose();
     super.dispose();
-  }
-
-  double get volume => _player.volume;
-
-  void play() async {
-    setState(() {
-      _playStatus = PlayStatus.Play;
-    });
-
-    var duration = await _player.setUrl(widget.audio.musicFileUrl);
-
-    setState(() {
-      _duration = duration;
-    });
-
-    await _player.play();
-  }
-
-  void pause() async {
-    setState(() {
-      _playStatus = PlayStatus.Pause;
-    });
-
-    await _player.pause();
   }
 
   @override
@@ -92,11 +73,7 @@ class _PlayerControllorState extends State<PlayerControllor> {
             );
           },
         ),
-        ControlButtons(
-          playStatus: _playStatus,
-          play: play,
-          pause: pause,
-        ),
+        ControlButtons(player: _player),
         VolumeControllor(),
       ],
     );

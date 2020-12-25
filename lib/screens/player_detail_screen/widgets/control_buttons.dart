@@ -1,20 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import './player_controllor.dart' show PlayStatus;
+import 'package:just_audio/just_audio.dart';
 
 class ControlButtons extends StatelessWidget {
-  final PlayStatus playStatus;
-
-  final Function play;
-
-  final Function pause;
+  final AudioPlayer player;
 
   const ControlButtons({
     Key key,
-    @required this.playStatus,
-    @required this.play,
-    @required this.pause,
+    @required this.player,
   }) : super(key: key);
 
   @override
@@ -47,13 +40,10 @@ class ControlButtons extends StatelessWidget {
               ),
               child: IconButton(
                 icon: Icon(
-                  playStatus == PlayStatus.Play
-                      ? Icons.pause
-                      : Icons.play_arrow,
+                  Icons.play_arrow,
                   color: Colors.black,
                 ),
-                onPressed:
-                    playStatus == PlayStatus.Play ? () => pause : () => play,
+                onPressed: null,
               ),
             ),
             Container(

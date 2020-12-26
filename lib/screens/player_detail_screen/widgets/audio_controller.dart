@@ -49,7 +49,7 @@ class AudioController extends StatelessWidget {
                     height: 64.0,
                     child: CircularProgressIndicator(),
                   );
-                } else if (playing != true) {
+                } else if (!playing) {
                   return Container(
                     margin: const EdgeInsets.only(left: 24, right: 24),
                     padding: const EdgeInsets.all(8),

@@ -96,10 +96,20 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
                 padding: const EdgeInsets.all(24),
                 child: Column(
                   children: [
-                    Poster(cover: metadata.coverUrl),
-                    Expanded(child: Meta(audio: metadata)),
-                    SeekBar(player: _player),
-                    AudioController(player: _player),
+                    Poster(
+                      cover: metadata.coverUrl,
+                    ),
+                    Expanded(
+                      child: Meta(
+                        audio: metadata,
+                      ),
+                    ),
+                    SeekBar(
+                      player: _player,
+                    ),
+                    AudioController(
+                      player: _player,
+                    ),
                   ],
                 ),
               ),

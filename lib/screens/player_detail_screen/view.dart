@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:just_audio/just_audio.dart';
@@ -87,7 +85,7 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
       stream: _player.sequenceStateStream,
       builder: (context, snapshot) {
         final state = snapshot.data;
-
+        if (state?.sequence?.isEmpty ?? true) return SizedBox();
         final metadata = state.currentSource.tag as Player;
 
         return Scaffold(

@@ -40,7 +40,9 @@ class AudioController extends StatelessWidget {
               builder: (context, snapshot) {
                 final playerState = snapshot.data;
                 final processingState = playerState?.processingState;
-                final playing = playerState?.playing;
+                final playing =
+                    playerState != null ? playerState.playing : false;
+
                 if (processingState == ProcessingState.loading ||
                     processingState == ProcessingState.buffering) {
                   return Container(

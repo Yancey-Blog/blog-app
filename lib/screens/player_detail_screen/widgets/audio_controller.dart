@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
-class ControlButtons extends StatelessWidget {
+class AudioController extends StatelessWidget {
   final AudioPlayer player;
 
-  const ControlButtons({
+  const AudioController({
     Key key,
     @required this.player,
   }) : super(key: key);

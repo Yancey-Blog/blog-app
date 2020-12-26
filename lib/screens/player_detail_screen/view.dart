@@ -8,8 +8,7 @@ import 'package:audio_session/audio_session.dart';
 import 'package:blog_app/models/models.dart';
 
 import 'widgets/seek_bar.dart';
-import 'widgets/volume_controllor.dart';
-import 'widgets/control_buttons.dart';
+import 'widgets/audio_controller.dart';
 import 'widgets/poster.dart';
 import 'widgets/meta.dart';
 
@@ -116,35 +115,29 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
                         Expanded(
                           child: Meta(audio: metadata),
                         ),
-                        Column(
-                          children: [
-                            StreamBuilder<Duration>(
-                              stream: _player.durationStream,
+                        StreamBuilder<Duration>(
+                          stream: _player.durationStream,
+                          builder: (context, snapshot) {
+                            final duration = snapshot.data ?? Duration.zero;
+                            return StreamBuilder<Duration>(
+                              stream: _player.positionStream,
                               builder: (context, snapshot) {
-                                final duration = snapshot.data ?? Duration.zero;
-                                return StreamBuilder<Duration>(
-                                  stream: _player.positionStream,
-                                  builder: (context, snapshot) {
-                                    var position =
-                                        snapshot.data ?? Duration.zero;
-                                    if (position > duration) {
-                                      position = duration;
-                                    }
-                                    return SeekBar(
-                                      duration: duration,
-                                      position: position,
-                                      onChangeEnd: (newPosition) {
-                                        _player.seek(newPosition);
-                                      },
-                                    );
+                                var position = snapshot.data ?? Duration.zero;
+                                if (position > duration) {
+                                  position = duration;
+                                }
+                                return SeekBar(
+                                  duration: duration,
+                                  position: position,
+                                  onChangeEnd: (newPosition) {
+                                    _player.seek(newPosition);
                                   },
                                 );
                               },
-                            ),
-                            ControlButtons(player: _player),
-                            VolumeControllor(),
-                          ],
-                        )
+                            );
+                          },
+                        ),
+                        AudioController(player: _player),
                       ],
                     ),
                   ),

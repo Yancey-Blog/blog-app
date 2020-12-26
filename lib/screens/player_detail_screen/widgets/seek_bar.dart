@@ -31,9 +31,7 @@ class _SeekBarState extends State<SeekBar> {
               position = duration;
             }
 
-            final _remaining = duration - position;
-
-            return Stack(
+            return Column(
               children: [
                 Slider(
                   min: 0.0,
@@ -52,18 +50,30 @@ class _SeekBarState extends State<SeekBar> {
                     _dragValue = null;
                   },
                 ),
-                Positioned(
-                  right: 16.0,
-                  bottom: 0.0,
-                  child: Text(
-                    RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
-                            .firstMatch('$_remaining')
-                            ?.group(1) ??
-                        '$_remaining',
-                    style: TextStyle(
-                      color: Colors.white,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
+                              .firstMatch('$position')
+                              ?.group(1) ??
+                          '$position',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
                     ),
-                  ),
+                    Text(
+                      RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
+                              .firstMatch('$duration')
+                              ?.group(1) ??
+                          '$duration',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 10,
+                      ),
+                    ),
+                  ],
                 ),
               ],
             );

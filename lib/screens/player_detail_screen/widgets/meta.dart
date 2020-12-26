@@ -16,6 +16,7 @@ class Meta extends StatelessWidget {
             audio.title,
             style: TextStyle(
               fontSize: 20,
+              color: Colors.white,
             ),
           ),
         ),
@@ -24,6 +25,7 @@ class Meta extends StatelessWidget {
             audio.artist,
             style: TextStyle(
               fontSize: 16,
+              color: Colors.white,
             ),
           ),
         ),

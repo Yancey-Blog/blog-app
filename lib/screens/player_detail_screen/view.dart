@@ -101,9 +101,12 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
               ),
             ),
             child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+              filter: ImageFilter.blur(
+                sigmaX: 20,
+                sigmaY: 20,
+              ),
               child: Container(
-                color: Colors.white.withOpacity(0.5),
+                color: Colors.black.withOpacity(0.2),
                 child: SafeArea(
                   child: Container(
                     padding: const EdgeInsets.all(24),

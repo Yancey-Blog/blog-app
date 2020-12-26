@@ -17,6 +17,7 @@ class ControlButtons extends StatelessWidget {
       children: [
         Icon(
           CupertinoIcons.arrow_2_circlepath,
+          color: Color(0xff31c27c),
         ),
         Row(
           children: [
@@ -24,12 +25,12 @@ class ControlButtons extends StatelessWidget {
               stream: player.sequenceStateStream,
               builder: (context, snapshot) => Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
+                  border: Border.all(color: Color(0xff31c27c)),
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
                   icon: Icon(CupertinoIcons.backward_end),
-                  color: Colors.black,
+                  color: Color(0xff31c27c),
                   onPressed: player.hasPrevious ? player.seekToPrevious : null,
                 ),
               ),
@@ -53,13 +54,13 @@ class ControlButtons extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 24, right: 24),
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
+                      border: Border.all(color: Color(0xff31c27c)),
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
                       icon: Icon(
                         Icons.play_arrow,
-                        color: Colors.black,
+                        color: Color(0xff31c27c),
                       ),
                       onPressed: player.play,
                     ),
@@ -69,13 +70,13 @@ class ControlButtons extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 24, right: 24),
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
+                      border: Border.all(color: Color(0xff31c27c)),
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
                       icon: Icon(
                         Icons.pause,
-                        color: Colors.black,
+                        color: Color(0xff31c27c),
                       ),
                       onPressed: player.pause,
                     ),
@@ -85,13 +86,13 @@ class ControlButtons extends StatelessWidget {
                     margin: const EdgeInsets.only(left: 24, right: 24),
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      border: Border.all(color: Colors.black),
+                      border: Border.all(color: Color(0xff31c27c)),
                       shape: BoxShape.circle,
                     ),
                     child: IconButton(
                       icon: Icon(
                         Icons.play_arrow,
-                        color: Colors.black,
+                        color: Color(0xff31c27c),
                       ),
                       onPressed: () => player.seek(Duration.zero,
                           index: player.effectiveIndices.first),
@@ -104,12 +105,12 @@ class ControlButtons extends StatelessWidget {
               stream: player.sequenceStateStream,
               builder: (context, snapshot) => Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
+                  border: Border.all(color: Color(0xff31c27c)),
                   shape: BoxShape.circle,
                 ),
                 child: IconButton(
                   icon: Icon(CupertinoIcons.forward_end),
-                  color: Colors.black,
+                  color: Color(0xff31c27c),
                   onPressed: player.hasNext ? player.seekToNext : null,
                 ),
               ),
@@ -118,7 +119,7 @@ class ControlButtons extends StatelessWidget {
         ),
         Icon(
           CupertinoIcons.arrow_swap,
-          color: Colors.black,
+          color: Color(0xff31c27c),
         ),
       ],
     );

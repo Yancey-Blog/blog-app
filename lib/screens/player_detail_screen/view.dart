@@ -87,7 +87,7 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
       stream: _player.sequenceStateStream,
       builder: (context, snapshot) {
         final state = snapshot.data;
-        if (state?.sequence?.isEmpty ?? true) return SizedBox();
+
         final metadata = state.currentSource.tag as Player;
 
         return Scaffold(

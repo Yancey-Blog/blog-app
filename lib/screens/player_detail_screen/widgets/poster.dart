@@ -1,8 +1,38 @@
 import 'package:flutter/material.dart';
 
-class Poster extends StatelessWidget {
+class Poster extends StatefulWidget {
   final String cover;
   Poster({Key key, @required this.cover}) : super(key: key);
+
+  @override
+  _PosterState createState() => _PosterState();
+}
+
+class _PosterState extends State<Poster> with TickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _animation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      duration: const Duration(seconds: 20),
+      vsync: this,
+    )..repeat(reverse: false);
+
+    _animation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.linear,
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +50,26 @@ class Poster extends StatelessWidget {
               ),
             ),
           ),
-          child: Center(
-            child: ClipOval(
-              child: Image.network(
-                cover,
-                width: MediaQuery.of(context).size.width * 0.517,
-                height: MediaQuery.of(context).size.width * 0.517,
+          child: RotationTransition(
+            turns: _animation,
+            child: Container(
+              width: MediaQuery.of(context).size.width * 0.825,
+              height: MediaQuery.of(context).size.width * 0.825,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(
+                    'https://s3.music.126.net/mobile-new/img/disc_light-plus.png',
+                  ),
+                ),
+              ),
+              child: Center(
+                child: ClipOval(
+                  child: Image.network(
+                    widget.cover,
+                    width: MediaQuery.of(context).size.width * 0.517,
+                    height: MediaQuery.of(context).size.width * 0.517,
+                  ),
+                ),
               ),
             ),
           ),

@@ -11,6 +11,7 @@ import 'widgets/seek_bar.dart';
 import 'widgets/audio_controller.dart';
 import 'widgets/poster.dart';
 import 'widgets/meta.dart';
+import 'widgets/blur_background.dart';
 
 class PlayerDetailView extends StatefulWidget {
   final List<Player> audioFiles;
@@ -90,57 +91,41 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
         final metadata = state.currentSource.tag as Player;
 
         return Scaffold(
-          body: Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(metadata.coverUrl),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: BackdropFilter(
-              filter: ImageFilter.blur(
-                sigmaX: 20,
-                sigmaY: 20,
-              ),
+          body: BlurBackground(
+            cover: metadata.coverUrl,
+            child: SafeArea(
               child: Container(
-                color: Colors.black.withOpacity(0.2),
-                child: SafeArea(
-                  child: Container(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      children: [
-                        Poster(cover: metadata.coverUrl),
-                        Expanded(
-                          child: Meta(audio: metadata),
-                        ),
-                        StreamBuilder<Duration>(
-                          stream: _player.durationStream,
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  children: [
+                    Poster(cover: metadata.coverUrl),
+                    Expanded(
+                      child: Meta(audio: metadata),
+                    ),
+                    StreamBuilder<Duration>(
+                      stream: _player.durationStream,
+                      builder: (context, snapshot) {
+                        final duration = snapshot.data ?? Duration.zero;
+                        return StreamBuilder<Duration>(
+                          stream: _player.positionStream,
                           builder: (context, snapshot) {
-                            final duration = snapshot.data ?? Duration.zero;
-                            return StreamBuilder<Duration>(
-                              stream: _player.positionStream,
-                              builder: (context, snapshot) {
-                                var position = snapshot.data ?? Duration.zero;
-                                if (position > duration) {
-                                  position = duration;
-                                }
-                                return SeekBar(
-                                  duration: duration,
-                                  position: position,
-                                  onChangeEnd: (newPosition) {
-                                    _player.seek(newPosition);
-                                  },
-                                );
+                            var position = snapshot.data ?? Duration.zero;
+                            if (position > duration) {
+                              position = duration;
+                            }
+                            return SeekBar(
+                              duration: duration,
+                              position: position,
+                              onChangeEnd: (newPosition) {
+                                _player.seek(newPosition);
                               },
                             );
                           },
-                        ),
-                        AudioController(player: _player),
-                      ],
+                        );
+                      },
                     ),
-                  ),
+                    AudioController(player: _player),
+                  ],
                 ),
               ),
             ),

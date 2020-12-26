@@ -1,18 +1,13 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 
 class SeekBar extends StatefulWidget {
-  final Duration duration;
-  final Duration position;
-  final ValueChanged<Duration> onChanged;
-  final ValueChanged<Duration> onChangeEnd;
+  final AudioPlayer player;
 
   SeekBar({
-    @required this.duration,
-    @required this.position,
-    this.onChanged,
-    this.onChangeEnd,
+    @required this.player,
   });
 
   @override
@@ -24,44 +19,57 @@ class _SeekBarState extends State<SeekBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Slider(
-          min: 0.0,
-          max: widget.duration.inMilliseconds.toDouble(),
-          value: min(_dragValue ?? widget.position.inMilliseconds.toDouble(),
-              widget.duration.inMilliseconds.toDouble()),
-          onChanged: (value) {
-            setState(() {
-              _dragValue = value;
-            });
-            if (widget.onChanged != null) {
-              widget.onChanged(Duration(milliseconds: value.round()));
+    return StreamBuilder<Duration>(
+      stream: widget.player.durationStream,
+      builder: (context, snapshot) {
+        final duration = snapshot.data ?? Duration.zero;
+        return StreamBuilder<Duration>(
+          stream: widget.player.positionStream,
+          builder: (context, snapshot) {
+            var position = snapshot.data ?? Duration.zero;
+            if (position > duration) {
+              position = duration;
             }
+
+            final _remaining = duration - position;
+
+            return Stack(
+              children: [
+                Slider(
+                  min: 0.0,
+                  max: duration.inMilliseconds.toDouble(),
+                  value: min(_dragValue ?? position.inMilliseconds.toDouble(),
+                      duration.inMilliseconds.toDouble()),
+                  onChanged: (value) {
+                    setState(() {
+                      _dragValue = value;
+                    });
+
+                    widget.player.seek(Duration(milliseconds: value.round()));
+                  },
+                  onChangeEnd: (value) {
+                    widget.player.seek(Duration(milliseconds: value.round()));
+                    _dragValue = null;
+                  },
+                ),
+                Positioned(
+                  right: 16.0,
+                  bottom: 0.0,
+                  child: Text(
+                    RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
+                            .firstMatch('$_remaining')
+                            ?.group(1) ??
+                        '$_remaining',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            );
           },
-          onChangeEnd: (value) {
-            if (widget.onChangeEnd != null) {
-              widget.onChangeEnd(Duration(milliseconds: value.round()));
-            }
-            _dragValue = null;
-          },
-        ),
-        Positioned(
-          right: 16.0,
-          bottom: 0.0,
-          child: Text(
-            RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
-                    .firstMatch('$_remaining')
-                    ?.group(1) ??
-                '$_remaining',
-            style: TextStyle(
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ],
+        );
+      },
     );
   }
-
-  Duration get _remaining => widget.duration - widget.position;
 }

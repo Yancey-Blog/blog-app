@@ -99,31 +99,8 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
                 child: Column(
                   children: [
                     Poster(cover: metadata.coverUrl),
-                    Expanded(
-                      child: Meta(audio: metadata),
-                    ),
-                    StreamBuilder<Duration>(
-                      stream: _player.durationStream,
-                      builder: (context, snapshot) {
-                        final duration = snapshot.data ?? Duration.zero;
-                        return StreamBuilder<Duration>(
-                          stream: _player.positionStream,
-                          builder: (context, snapshot) {
-                            var position = snapshot.data ?? Duration.zero;
-                            if (position > duration) {
-                              position = duration;
-                            }
-                            return SeekBar(
-                              duration: duration,
-                              position: position,
-                              onChangeEnd: (newPosition) {
-                                _player.seek(newPosition);
-                              },
-                            );
-                          },
-                        );
-                      },
-                    ),
+                    Expanded(child: Meta(audio: metadata)),
+                    SeekBar(player: _player),
                     AudioController(player: _player),
                   ],
                 ),

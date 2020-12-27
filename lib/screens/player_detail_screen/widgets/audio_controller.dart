@@ -37,6 +37,7 @@ class AudioController extends StatelessWidget {
                     constraints: BoxConstraints(),
                     icon: Icon(CupertinoIcons.backward_end),
                     color: Color(0xff31c27c),
+                    disabledColor: Color(0xff31c27c),
                     onPressed:
                         player.hasPrevious ? player.seekToPrevious : null,
                   ),
@@ -135,6 +136,7 @@ class AudioController extends StatelessWidget {
                     constraints: BoxConstraints(),
                     icon: Icon(CupertinoIcons.forward_end),
                     color: Color(0xff31c27c),
+                    disabledColor: Color(0xff31c27c),
                     onPressed: player.hasNext ? player.seekToNext : null,
                   ),
                 ),

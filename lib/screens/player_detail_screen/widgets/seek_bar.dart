@@ -88,7 +88,7 @@ class _SeekBarState extends State<SeekBar> {
                   ),
                 ),
                 Positioned.fill(
-                  top: 30,
+                  top: 34,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [

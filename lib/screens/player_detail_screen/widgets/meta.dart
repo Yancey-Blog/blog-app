@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:blog_app/models/models.dart';
 
+import 'lrc.dart';
+
 class Meta extends StatelessWidget {
   final Player audio;
 
@@ -21,6 +23,9 @@ class Meta extends StatelessWidget {
           ),
         ),
         Container(
+          margin: const EdgeInsets.only(
+            bottom: 12,
+          ),
           child: Text(
             audio.artist,
             style: TextStyle(
@@ -29,6 +34,7 @@ class Meta extends StatelessWidget {
             ),
           ),
         ),
+        LRCView(lrc: audio.lrc),
       ],
     );
   }

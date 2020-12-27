@@ -1,6 +1,5 @@
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-enum LaunchType { Url, PhoneNumber, SMS, Email }
 
 /// Checks whether the specified URL can be handled by some app installed on
 /// the device.
@@ -22,6 +21,8 @@ enum LaunchType { Url, PhoneNumber, SMS, Email }
 ///        'subject': 'Example Subject & Symbols are allowed!'
 ///      }).toString();
 /// ```
+enum LaunchType { Url, PhoneNumber, SMS, Email }
+
 void launchUrl(String url, {type = LaunchType.Url}) async {
   if (await canLaunch(url)) {
     await launch(url);
@@ -31,4 +32,5 @@ void launchUrl(String url, {type = LaunchType.Url}) async {
   }
 }
 
+/// Executes an empty function.
 void noop() => {};

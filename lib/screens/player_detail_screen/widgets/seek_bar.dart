@@ -91,7 +91,7 @@ class _SeekBarState extends State<SeekBar> {
                             '$position',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 10,
+                          fontSize: 12,
                         ),
                       ),
                       Text(
@@ -101,7 +101,7 @@ class _SeekBarState extends State<SeekBar> {
                             '$duration',
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 10,
+                          fontSize: 12,
                         ),
                       ),
                     ],

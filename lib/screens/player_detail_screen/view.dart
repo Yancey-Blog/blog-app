@@ -103,11 +103,8 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
                     Expanded(
                       child: Meta(
                         audio: metadata,
+                        player: _player,
                       ),
-                    ),
-                    LRCView(
-                      lrc: metadata.lrc,
-                      player: _player,
                     ),
                     SeekBar(
                       player: _player,

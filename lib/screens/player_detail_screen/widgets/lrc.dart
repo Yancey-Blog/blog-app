@@ -97,12 +97,10 @@ class _LRCViewState extends State<LRCView> {
             );
 
             return Container(
-              child: Center(
-                child: Text(
-                  _currentLrc != null ? _currentLrc.text : '',
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
+              child: Text(
+                _currentLrc != null ? _currentLrc.text : '',
+                style: TextStyle(
+                  color: Colors.white70,
                 ),
               ),
             );

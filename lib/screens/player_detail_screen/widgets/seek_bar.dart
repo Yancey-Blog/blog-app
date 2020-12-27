@@ -33,22 +33,32 @@ class _SeekBarState extends State<SeekBar> {
 
             return Column(
               children: [
-                Slider(
-                  min: 0.0,
-                  max: duration.inMilliseconds.toDouble(),
-                  value: min(_dragValue ?? position.inMilliseconds.toDouble(),
-                      duration.inMilliseconds.toDouble()),
-                  onChanged: (value) {
-                    setState(() {
-                      _dragValue = value;
-                    });
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    activeTrackColor: Color(0xff31c27c),
+                    inactiveTrackColor: Colors.white38,
+                    trackHeight: 1.0,
+                    thumbColor: Color(0xff31c27c),
+                    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.0),
+                    overlayColor: Colors.transparent,
+                  ),
+                  child: Slider(
+                    min: 0.0,
+                    max: duration.inMilliseconds.toDouble(),
+                    value: min(_dragValue ?? position.inMilliseconds.toDouble(),
+                        duration.inMilliseconds.toDouble()),
+                    onChanged: (value) {
+                      setState(() {
+                        _dragValue = value;
+                      });
 
-                    widget.player.seek(Duration(milliseconds: value.round()));
-                  },
-                  onChangeEnd: (value) {
-                    widget.player.seek(Duration(milliseconds: value.round()));
-                    _dragValue = null;
-                  },
+                      widget.player.seek(Duration(milliseconds: value.round()));
+                    },
+                    onChangeEnd: (value) {
+                      widget.player.seek(Duration(milliseconds: value.round()));
+                      _dragValue = null;
+                    },
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

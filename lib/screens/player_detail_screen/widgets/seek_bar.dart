@@ -71,10 +71,18 @@ class _SeekBarState extends State<SeekBar> {
                         _dragValue = value;
                       });
 
-                      widget.player.seek(Duration(milliseconds: value.round()));
+                      widget.player.seek(
+                        Duration(
+                          milliseconds: value.round(),
+                        ),
+                      );
                     },
                     onChangeEnd: (value) {
-                      widget.player.seek(Duration(milliseconds: value.round()));
+                      widget.player.seek(
+                        Duration(
+                          milliseconds: value.round(),
+                        ),
+                      );
                       _dragValue = null;
                     },
                   ),

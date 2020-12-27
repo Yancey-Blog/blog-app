@@ -29,7 +29,10 @@ class AudioController extends StatelessWidget {
                 stream: player.sequenceStateStream,
                 builder: (context, snapshot) => Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xff31c27c)),
+                    border: Border.all(
+                      color: Color(0xff31c27c),
+                      width: 2,
+                    ),
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(
@@ -57,7 +60,10 @@ class AudioController extends StatelessWidget {
                     return Container(
                       margin: const EdgeInsets.only(left: 24, right: 24),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xff31c27c)),
+                        border: Border.all(
+                          color: Color(0xff31c27c),
+                          width: 2,
+                        ),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
@@ -71,7 +77,10 @@ class AudioController extends StatelessWidget {
                     return Container(
                       margin: const EdgeInsets.only(left: 24, right: 24),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xff31c27c)),
+                        border: Border.all(
+                          color: Color(0xff31c27c),
+                          width: 2,
+                        ),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
@@ -88,7 +97,10 @@ class AudioController extends StatelessWidget {
                     return Container(
                       margin: const EdgeInsets.only(left: 24, right: 24),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xff31c27c)),
+                        border: Border.all(
+                          color: Color(0xff31c27c),
+                          width: 2,
+                        ),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
@@ -106,7 +118,10 @@ class AudioController extends StatelessWidget {
                       margin: const EdgeInsets.only(left: 24, right: 24),
                       //  padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
-                        border: Border.all(color: Color(0xff31c27c)),
+                        border: Border.all(
+                          color: Color(0xff31c27c),
+                          width: 2,
+                        ),
                         shape: BoxShape.circle,
                       ),
                       child: IconButton(
@@ -128,7 +143,10 @@ class AudioController extends StatelessWidget {
                 stream: player.sequenceStateStream,
                 builder: (context, snapshot) => Container(
                   decoration: BoxDecoration(
-                    border: Border.all(color: Color(0xff31c27c)),
+                    border: Border.all(
+                      color: Color(0xff31c27c),
+                      width: 2,
+                    ),
                     shape: BoxShape.circle,
                   ),
                   child: IconButton(

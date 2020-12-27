@@ -1,7 +1,25 @@
 import 'dart:math';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+
+class CustomTrackShape extends RoundedRectSliderTrackShape {
+  @override
+  Rect getPreferredRect({
+    @required RenderBox parentBox,
+    Offset offset = Offset.zero,
+    @required SliderThemeData sliderTheme,
+    bool isEnabled = false,
+    bool isDiscrete = false,
+  }) {
+    final trackHeight = sliderTheme.trackHeight;
+    final trackLeft = offset.dx;
+    final trackTop = offset.dy + (parentBox.size.height - trackHeight) / 2;
+    final trackWidth = parentBox.size.width;
+    return Rect.fromLTWH(trackLeft, trackTop, trackWidth, trackHeight);
+  }
+}
 
 class SeekBar extends StatefulWidget {
   final AudioPlayer player;
@@ -31,7 +49,7 @@ class _SeekBarState extends State<SeekBar> {
               position = duration;
             }
 
-            return Column(
+            return Stack(
               children: [
                 SliderTheme(
                   data: SliderTheme.of(context).copyWith(
@@ -41,6 +59,7 @@ class _SeekBarState extends State<SeekBar> {
                     thumbColor: Color(0xff31c27c),
                     thumbShape: RoundSliderThumbShape(enabledThumbRadius: 8.0),
                     overlayColor: Colors.transparent,
+                    trackShape: CustomTrackShape(),
                   ),
                   child: Slider(
                     min: 0.0,
@@ -60,30 +79,33 @@ class _SeekBarState extends State<SeekBar> {
                     },
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
-                              .firstMatch('$position')
-                              ?.group(1) ??
-                          '$position',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
+                Positioned.fill(
+                  top: 30,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
+                                .firstMatch('$position')
+                                ?.group(1) ??
+                            '$position',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                        ),
                       ),
-                    ),
-                    Text(
-                      RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
-                              .firstMatch('$duration')
-                              ?.group(1) ??
-                          '$duration',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 10,
+                      Text(
+                        RegExp(r'((^0*[1-9]\d*:)?\d{2}:\d{2})\.\d+$')
+                                .firstMatch('$duration')
+                                ?.group(1) ??
+                            '$duration',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 10,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             );

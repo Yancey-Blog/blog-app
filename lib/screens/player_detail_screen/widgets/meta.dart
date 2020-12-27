@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:blog_app/models/models.dart';
 
-import 'lrc.dart';
-
 class Meta extends StatelessWidget {
   final Player audio;
 
@@ -34,7 +32,6 @@ class Meta extends StatelessWidget {
             ),
           ),
         ),
-        LRCView(lrc: audio.lrc),
       ],
     );
   }

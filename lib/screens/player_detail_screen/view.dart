@@ -10,6 +10,7 @@ import 'widgets/audio_controller.dart';
 import 'widgets/poster.dart';
 import 'widgets/meta.dart';
 import 'widgets/blur_background.dart';
+import 'widgets/lrc.dart';
 
 class PlayerDetailView extends StatefulWidget {
   final List<Player> audioFiles;
@@ -103,6 +104,10 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
                       child: Meta(
                         audio: metadata,
                       ),
+                    ),
+                    LRCView(
+                      lrc: metadata.lrc,
+                      player: _player,
                     ),
                     SeekBar(
                       player: _player,

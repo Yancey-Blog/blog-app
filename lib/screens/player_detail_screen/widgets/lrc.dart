@@ -1,34 +1,56 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:just_audio/just_audio.dart';
 
 class LRC {
-  final int time;
+  final Duration time;
   final String text;
   LRC({@required this.time, @required this.text});
 }
 
 class LRCView extends StatefulWidget {
   final String lrc;
-  LRCView({Key key, @required this.lrc}) : super(key: key);
+
+  final AudioPlayer player;
+
+  LRCView({
+    Key key,
+    @required this.lrc,
+    @required this.player,
+  }) : super(key: key);
 
   @override
   _LRCViewState createState() => _LRCViewState();
 }
 
 class _LRCViewState extends State<LRCView> {
+  List<LRC> _lrc;
+
   @override
   void initState() {
     super.initState();
+    _lrc = _getLRCList(widget.lrc);
+  }
+
+  @override
+  void didUpdateWidget(LRCView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _lrc = _getLRCList(widget.lrc);
   }
 
   // Parses LRC time.
-  int _parseLRCTime(String timeStr) {
+  Duration _parseLRCTime(String timeStr) {
     final res = DateFormat('mm:ss.SSS').parse(timeStr);
-    final minute = res.minute;
-    final second = res.second;
+
+    final minutes = res.minute;
+    final seconds = res.second;
     final milliseconds = res.millisecond;
 
-    return minute * 60 * 1000 + second * 1000 + milliseconds;
+    return Duration(
+      minutes: minutes,
+      seconds: seconds,
+      milliseconds: milliseconds,
+    );
   }
 
   // Gets LRC time string.
@@ -56,10 +78,37 @@ class _LRCViewState extends State<LRCView> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
-        child: Text('xxx'),
-      ),
+    return StreamBuilder<Duration>(
+      stream: widget.player.durationStream,
+      builder: (context, snapshot) {
+        final duration = snapshot.data ?? Duration.zero;
+
+        return StreamBuilder<Duration>(
+          stream: widget.player.positionStream,
+          builder: (context, snapshot) {
+            var position = snapshot.data ?? Duration.zero;
+            if (position > duration) {
+              position = duration;
+            }
+
+            var _currentLrc = _lrc.lastWhere(
+              (element) => position >= element.time,
+              orElse: () => null,
+            );
+
+            return Container(
+              child: Center(
+                child: Text(
+                  _currentLrc != null ? _currentLrc.text : '',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }

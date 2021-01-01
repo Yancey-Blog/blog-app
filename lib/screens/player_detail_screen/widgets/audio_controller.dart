@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
+import 'play_list.dart';
+
 class AudioController extends StatefulWidget {
   final AudioPlayer player;
 
@@ -20,7 +22,6 @@ class _AudioControllerState extends State<AudioController> {
     showCupertinoModalBottomSheet(
       expand: false,
       context: context,
-      backgroundColor: Colors.transparent,
       builder: (context) => child,
     );
   }
@@ -154,7 +155,6 @@ class _AudioControllerState extends State<AudioController> {
                   } else {
                     return Container(
                       margin: const EdgeInsets.only(left: 24, right: 24),
-                      //  padding: const EdgeInsets.all(8),
                       decoration: BoxDecoration(
                         border: Border.all(
                           color: Color(0xff31c27c),
@@ -207,15 +207,9 @@ class _AudioControllerState extends State<AudioController> {
               CupertinoIcons.music_note_list,
               color: Color(0xff31c27c),
             ),
-            onPressed: () => _handleModalBottomSheetChange(
-              Container(
-                height: MediaQuery.of(context).size.height * 0.8,
-                color: Colors.black54,
-                child: Center(
-                  child: Text('fuck'),
-                ),
-              ),
-            ),
+            onPressed: () => _handleModalBottomSheetChange(PlayList(
+              player: widget.player,
+            )),
           ),
         ],
       ),

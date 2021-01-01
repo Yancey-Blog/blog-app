@@ -10,7 +10,6 @@ import 'widgets/audio_controller.dart';
 import 'widgets/poster.dart';
 import 'widgets/meta.dart';
 import 'widgets/blur_background.dart';
-import 'widgets/lrc.dart';
 
 class PlayerDetailView extends StatefulWidget {
   final List<Player> audioFiles;
@@ -54,6 +53,7 @@ class _PlayerDetailViewState extends State<PlayerDetailView> {
     await session.configure(AudioSessionConfiguration.speech());
     try {
       await _player.setAudioSource(_playlist);
+      await _player.setLoopMode(LoopMode.all);
     } on PlayerException catch (e) {
       // iOS/macOS: maps to NSError.code
       // Android: maps to ExoPlayerException.type

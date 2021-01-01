@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
-class AudioController extends StatelessWidget {
+class AudioController extends StatefulWidget {
   final AudioPlayer player;
 
   const AudioController({
@@ -11,6 +11,11 @@ class AudioController extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _AudioControllerState createState() => _AudioControllerState();
+}
+
+class _AudioControllerState extends State<AudioController> {
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(top: 24),
@@ -18,15 +23,37 @@ class AudioController extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           // 循环播放
-          Icon(
-            CupertinoIcons.arrow_2_circlepath,
-            color: Color(0xff31c27c),
+          StreamBuilder<LoopMode>(
+            stream: widget.player.loopModeStream,
+            builder: (context, snapshot) {
+              final loopMode = snapshot.data ?? LoopMode.off;
+              const icons = [
+                Icon(CupertinoIcons.repeat, color: Colors.grey),
+                Icon(CupertinoIcons.repeat, color: Color(0xff31c27c)),
+                Icon(CupertinoIcons.repeat_1, color: Color(0xff31c27c)),
+              ];
+              const cycleModes = [
+                LoopMode.off,
+                LoopMode.all,
+                LoopMode.one,
+              ];
+              final index = cycleModes.indexOf(loopMode);
+              return IconButton(
+                constraints: BoxConstraints(),
+                icon: icons[index],
+                color: Color(0xff31c27c),
+                onPressed: () {
+                  widget.player.setLoopMode(cycleModes[
+                      (cycleModes.indexOf(loopMode) + 1) % cycleModes.length]);
+                },
+              );
+            },
           ),
           Row(
             children: [
               // 上一首
               StreamBuilder<SequenceState>(
-                stream: player.sequenceStateStream,
+                stream: widget.player.sequenceStateStream,
                 builder: (context, snapshot) => Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -41,14 +68,15 @@ class AudioController extends StatelessWidget {
                     icon: Icon(CupertinoIcons.backward_end),
                     color: Color(0xff31c27c),
                     disabledColor: Color(0xff31c27c),
-                    onPressed:
-                        player.hasPrevious ? player.seekToPrevious : null,
+                    onPressed: widget.player.hasPrevious
+                        ? widget.player.seekToPrevious
+                        : null,
                   ),
                 ),
               ),
               // 播放/暂停/重新播放/音频加载
               StreamBuilder<PlayerState>(
-                stream: player.playerStateStream,
+                stream: widget.player.playerStateStream,
                 builder: (context, snapshot) {
                   final playerState = snapshot.data;
                   final processingState = playerState?.processingState;
@@ -90,7 +118,7 @@ class AudioController extends StatelessWidget {
                           Icons.play_arrow_outlined,
                           color: Color(0xff31c27c),
                         ),
-                        onPressed: player.play,
+                        onPressed: widget.player.play,
                       ),
                     );
                   } else if (processingState != ProcessingState.completed) {
@@ -110,7 +138,7 @@ class AudioController extends StatelessWidget {
                           Icons.pause,
                           color: Color(0xff31c27c),
                         ),
-                        onPressed: player.pause,
+                        onPressed: widget.player.pause,
                       ),
                     );
                   } else {
@@ -131,8 +159,8 @@ class AudioController extends StatelessWidget {
                           Icons.play_arrow,
                           color: Color(0xff31c27c),
                         ),
-                        onPressed: () => player.seek(Duration.zero,
-                            index: player.effectiveIndices.first),
+                        onPressed: () => widget.player.seek(Duration.zero,
+                            index: widget.player.effectiveIndices.first),
                       ),
                     );
                   }
@@ -140,7 +168,7 @@ class AudioController extends StatelessWidget {
               ),
               // 下一首
               StreamBuilder<SequenceState>(
-                stream: player.sequenceStateStream,
+                stream: widget.player.sequenceStateStream,
                 builder: (context, snapshot) => Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -155,7 +183,8 @@ class AudioController extends StatelessWidget {
                     icon: Icon(CupertinoIcons.forward_end),
                     color: Color(0xff31c27c),
                     disabledColor: Color(0xff31c27c),
-                    onPressed: player.hasNext ? player.seekToNext : null,
+                    onPressed:
+                        widget.player.hasNext ? widget.player.seekToNext : null,
                   ),
                 ),
               ),
@@ -163,7 +192,7 @@ class AudioController extends StatelessWidget {
           ),
           // 随机播放
           Icon(
-            CupertinoIcons.arrow_swap,
+            CupertinoIcons.music_note_list,
             color: Color(0xff31c27c),
           ),
         ],

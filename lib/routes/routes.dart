@@ -3,7 +3,10 @@ import 'package:blog_app/screens/screens.dart';
 
 class Routes {
   static final Map<String, WidgetBuilder> routes = {
-    '/': (context) => HomeScreen(),
+    '/': (context) => MainScreen(),
+    '/home_screen': (context) => HomeScreen(),
+    '/favorite_screen': (context) => FavoriteScreen(),
+    '/me_screen': (context) => MeScreen(),
     'device_info_screen': (context) => DeviceInfoScreen(),
     'battery_info_screen': (context) => BatteryScreen(),
     'post_detail_screen': (context) => PostDetailScreen(),

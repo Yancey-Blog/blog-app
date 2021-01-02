@@ -18,9 +18,10 @@ class _BottomNavigationBarWidgetState extends State<BottomNavigationBarWidget> {
   int _currentIndex = 0;
 
   final _list = [
+    CupertinoIcons.home,
+    CupertinoIcons.square_favorites_alt,
     CupertinoIcons.music_albums,
     CupertinoIcons.person_circle,
-    CupertinoIcons.home,
   ];
 
   void _onItemTapped(int index) {

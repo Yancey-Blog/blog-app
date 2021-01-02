@@ -1,4 +1,7 @@
+export 'main_screen/screen.dart';
 export 'home_screen/screen.dart';
+export 'favorite_screen/screen.dart';
+export 'me_screen/screen.dart';
 export 'battery_info_screen/view.dart';
 export 'device_info_screen/view.dart';
 export 'post_detail_screen/screen.dart';

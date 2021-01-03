@@ -78,6 +78,7 @@ class _HomeViewState extends State<HomeView> {
                           'Show All',
                           style: TextStyle(
                             fontSize: 16,
+                            color: Color(0xffe95a7d),
                           ),
                         )
                       ],

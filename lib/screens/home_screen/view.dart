@@ -7,6 +7,7 @@ import 'widgets/search_input.dart';
 import 'widgets/daily_recommend_list.dart';
 import 'widgets/daily_recommend_skeleton.dart';
 import 'widgets/recent_list.dart';
+import 'widgets/recent_skeleton.dart';
 
 class HomeView extends StatefulWidget {
   HomeView({Key key}) : super(key: key);
@@ -31,12 +32,8 @@ class _HomeViewState extends State<HomeView> {
         Widget _renderedWidget2 = SizedBox();
 
         if (state is PostLoadInProgress) {
-          _renderedWidget1 = Center(
-            child: DailyRecommendSkeleton(),
-          );
-          _renderedWidget2 = Center(
-            child: CircularProgressIndicator(),
-          );
+          _renderedWidget1 = DailyRecommendSkeleton();
+          _renderedWidget2 = RecentSkeleton();
         }
 
         if (state is PostListLoadSuccess) {

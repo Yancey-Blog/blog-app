@@ -160,6 +160,8 @@ PODS:
   - nanopb/encode (1.30906.0)
   - path_provider (0.0.1):
     - Flutter
+  - "permission_handler (5.0.1+1)":
+    - Flutter
   - PromisesObjC (1.2.11)
   - Protobuf (3.13.0)
   - Reachability (3.2)
@@ -193,6 +195,7 @@ DEPENDENCIES:
   - fluttertoast (from `.symlinks/plugins/fluttertoast/ios`)
   - just_audio (from `.symlinks/plugins/just_audio/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
+  - permission_handler (from `.symlinks/plugins/permission_handler/ios`)
   - share (from `.symlinks/plugins/share/ios`)
   - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
   - sqflite (from `.symlinks/plugins/sqflite/ios`)
@@ -254,6 +257,8 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/just_audio/ios"
   path_provider:
     :path: ".symlinks/plugins/path_provider/ios"
+  permission_handler:
+    :path: ".symlinks/plugins/permission_handler/ios"
   share:
     :path: ".symlinks/plugins/share/ios"
   shared_preferences:
@@ -300,6 +305,7 @@ SPEC CHECKSUMS:
   just_audio: baa7252489dbcf47a4c7cc9ca663e9661c99aafa
   nanopb: 59317e09cf1f1a0af72f12af412d54edf52603fc
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
+  permission_handler: eac8e15b4a1a3fba55b761d19f3f4e6b005d15b6
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   Protobuf: 3dac39b34a08151c6d949560efe3f86134a3f748
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96

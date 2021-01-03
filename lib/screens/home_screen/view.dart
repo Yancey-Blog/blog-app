@@ -5,6 +5,7 @@ import 'package:blog_app/blocs/blocs.dart';
 
 import 'widgets/search_input.dart';
 import 'widgets/daily_recommend_list.dart';
+import 'widgets/daily_recommend_skeleton.dart';
 import 'widgets/recent_list.dart';
 
 class HomeView extends StatefulWidget {
@@ -31,7 +32,7 @@ class _HomeViewState extends State<HomeView> {
 
         if (state is PostLoadInProgress) {
           _renderedWidget1 = Center(
-            child: CircularProgressIndicator(),
+            child: DailyRecommendSkeleton(),
           );
           _renderedWidget2 = Center(
             child: CircularProgressIndicator(),
